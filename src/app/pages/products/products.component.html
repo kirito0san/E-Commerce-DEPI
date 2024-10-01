@@ -1,0 +1,21 @@
+<div class="d-flex flex-wrap gap-3 justify-content-evenly py-5">
+  <mat-card
+    *ngFor="let item of products"
+    class="example-card d-flex flex-column gap-2 justify-content-around"
+    appearance="outlined"
+  >
+    <mat-card-header>
+      <mat-card-title> {{ item.title }}</mat-card-title>
+    </mat-card-header>
+    <img
+      mat-card-image
+      class="img-product w-50 h-50 align-self-center"
+      [src]="item.image"
+      alt="Photo of a Shiba Inu"
+    />
+    <mat-card-actions class="d-flex gap-3">
+      <button class="btn btn-outline-danger">add to cart</button>
+      <button class="btn btn-outline-primary">favorite</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
