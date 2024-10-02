@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -16,7 +15,6 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +23,6 @@ import { ProductsComponent } from './pages/products/products.component';
     CartComponent,
     HomeComponent,
     LoginComponent,
-    SignupComponent,
     TestimonialsComponent,
     AboutComponent,
     ContactComponent,
@@ -33,6 +30,7 @@ import { ProductsComponent } from './pages/products/products.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SignupComponent,
     NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
