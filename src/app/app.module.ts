@@ -15,6 +15,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,6 @@ import { ProductsComponent } from './pages/products/products.component';
     FooterComponent,
     CartComponent,
     HomeComponent,
-    LoginComponent,
     TestimonialsComponent,
     AboutComponent,
     ContactComponent,
@@ -32,6 +32,7 @@ import { ProductsComponent } from './pages/products/products.component';
     AppRoutingModule,
     SignupComponent,
     NgbModule,
+    LoginComponent,
     BrowserAnimationsModule,
     HttpClientModule,
     ProductsComponent,

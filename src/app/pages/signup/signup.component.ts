@@ -7,7 +7,8 @@ import {
   FormBuilder,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthServiceService } from 'src/app/service/auth-service.service';
 /** Error when invalid control is dirty, touched, or submitted. */
 
 @Component({
@@ -19,7 +20,13 @@ import { RouterLink } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  allEmail: any[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -35,6 +42,10 @@ export class SignupComponent implements OnInit {
         ],
       ],
     });
+    this.authService.getAllUser().subscribe((data) => {
+      console.log('User list:', data);
+      this.allEmail = data;
+    });
   }
   // Submit method
   onSubmit() {
@@ -42,8 +53,22 @@ export class SignupComponent implements OnInit {
       const name = this.signupForm.get('name')?.value;
       const email = this.signupForm.get('email')?.value;
       const password = this.signupForm.get('password')?.value;
-      const phone = this.signupForm.get('number')?.value;
-
+      const phoneNumber = this.signupForm.get('number')?.value;
+      if (!this.allEmail.some((e) => e.email == email)) {
+        this.authService
+          .register({ name, email, password, phoneNumber })
+          .subscribe(
+            (response) => {
+              console.log('Registration successful', response);
+              this.router.navigate(['/login']);
+            },
+            (error) => {
+              console.error('Error during registration', error);
+            }
+          );
+      } else {
+        alert('Email already exists');
+      }
       console.log('Form Submitted', this.signupForm.value);
     } else {
       console.log('Form is invalid');
