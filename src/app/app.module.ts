@@ -16,6 +16,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
+import { NewArrivalComponent } from './components/new-arrival/new-arrival.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProductsComponent } from './pages/products/products.component';
     TestimonialsComponent,
     AboutComponent,
     ContactComponent,
+    NewArrivalComponent,
   ],
   imports: [
     BrowserModule,
