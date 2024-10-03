@@ -1,13 +1,13 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-body{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
 }
 
-.container{
+.container {
   background: rgba(74, 176, 173, 1);
   display: flex;
   justify-content: space-between;
@@ -16,49 +16,53 @@ body{
   color: rgba(254, 247, 249, 1);
   padding: 20px;
   border-radius: 8px;
-
 }
-@media(max-width: 767px){
-  .container{
+img {
+  width: 350px;
+  height: 300px;
+  margin-top: 150px;
+}
+@media (max-width: 1000px) {
+  img {
+    margin-top: 0px;
+  }
+  .container {
     flex-wrap: wrap;
+    gap: 0px;
     justify-content: center;
     align-items: center;
     text-align: center;
   }
 }
-img{
-  width: 350px;
-  height: 300px;
-  margin-top: 150px;
-}
-@media(max-width:767px){
-  img{
+
+@media (max-width: 767px) {
+  img {
     width: 250px;
     margin-top: 50px;
   }
 }
-@media(max-width:370px){
-  img{
+@media (max-width: 400px) {
+  img {
     width: 220px;
-    height:200px;
+    height: 200px;
   }
 }
 
-
-h2{
+h2 {
   font-size: 50px;
 }
-p{
+p {
   line-height: 1.8;
   margin: 25px 0px 25px 0px;
 }
-.buttons{
+.buttons {
   display: flex;
+  gap: 10px;
   justify-content: space-between;
 }
 
-.buttons button{
-  width: 35%;
+.buttons button {
+  width: 45%;
   height: 30px;
   border-radius: 4px;
   font-size: 15px;
@@ -68,9 +72,8 @@ p{
   transition: all 0.5s;
 }
 
-.buttons button:hover{
-  background-color:  rgba(74, 176, 173, 1);
-  color:rgba(254, 247, 249, 1) ;
+.buttons button:hover {
+  background-color: rgba(74, 176, 173, 1);
+  color: rgba(254, 247, 249, 1);
   border: 1px solid rgba(254, 247, 249, 1);
 }
-
