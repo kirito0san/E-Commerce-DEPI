@@ -39,6 +39,7 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
     BrowserAnimationsModule,
     HttpClientModule,
     ProductsComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
