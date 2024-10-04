@@ -47,8 +47,10 @@ export class LoginComponent implements OnInit {
             (user: any) => user.email === email && user.password === password
           );
           if (this.user) {
+            this.authService.favorites = this.user.favorites;
+            this.authService.cart = this.user.cart;
             localStorage.setItem('user', JSON.stringify(this.user));
-            this.router.navigate(['/']);
+            // this.router.navigate(['/']);
             console.log('Login successful', response);
           } else {
             alert('cheek the email or password');

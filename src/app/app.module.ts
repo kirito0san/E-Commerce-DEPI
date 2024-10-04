@@ -21,7 +21,6 @@ import { ProductsComponent } from './pages/products/products.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    CartComponent,
     HomeComponent,
     TestimonialsComponent,
     AboutComponent,
@@ -30,6 +29,7 @@ import { ProductsComponent } from './pages/products/products.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CartComponent,
     SignupComponent,
     NgbModule,
     LoginComponent,

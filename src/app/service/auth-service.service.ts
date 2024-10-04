@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthServiceService {
   private apiUrl = 'https://retoolapi.dev/rGNpuZ/data'; // Replace with your API URL
-
+  public favorites = [];
+  public cart = [];
   constructor(private router: Router, private http: HttpClient) {}
   register(userData: {
     name: string;
