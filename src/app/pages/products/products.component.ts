@@ -21,10 +21,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProductsComponent implements OnInit {
   products: any = [];
-  constructor(private data: DataService) {}
+  constructor(private data: DataService) {
+    console.log(this.data.serchResult);
+
+
+  }
   ngOnInit() {
+    this.data.currentSearchString.subscribe((search)=>
+    {this.searchTerm = search})
     this.data.getAllData().subscribe((data) => {
-      console.log(data);
       this.products = data;
     });
   }

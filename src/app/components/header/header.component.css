@@ -1,0 +1,136 @@
+/* i.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+} */
+
+.header{
+  background-color: #F9ECE6;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* svg{
+  margin-left: 7px;
+} */
+
+a{
+  text-decoration: none;
+  font-weight: 500;
+  color: #575753;
+}
+
+li{
+  transition: 0.2s;
+}
+
+li:hover{
+  margin-top: -2px;
+}
+
+.active1{
+  background-color: #F5F5F5;
+  padding: 10px 10px;
+  border-radius: 6px;
+  color: #4AB0AD;
+}
+
+.active2{
+  background-color: #F5F5F5;
+  padding: 5px 5px;
+  border-radius: 50%;
+}
+
+.active2 svg{
+  fill: #4AB0AD;
+}
+
+@media (max-width: 768px) {
+  .header{
+    padding: 10px;
+  }
+  .header-left-large{
+    flex-flow: column wrap;
+    position: absolute;
+    left: 0px;
+    top: 48px;
+    /* border: 1px solid #4AB0AD; */
+    background-color: #eee;
+    gap: 5px !important;
+    border-radius: 0 0 10px 10px;
+  }
+
+  .header-left-large a{
+    padding: 5px 35px;
+    width: 100%;
+    display: block;
+  }
+
+  .header-left-large li{
+    padding: 0;
+  }
+
+  .active1{
+    /* padding: 0;
+    background: none; */
+    background-color: #4AB0AD;
+    color: antiquewhite;
+  }
+
+  .header-left-large li:hover{
+    background-color: #F5F5F5 !important;
+  }
+  .header-left-small button{
+    background-color: transparent;
+    border: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .header-left-small{
+    display: none !important;
+  }
+}
+
+/*Start Search input */
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.search-icon {
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 4px;
+}
+
+.search-input {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0);
+}
+
+.search-input.show {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+/*----------------------End Search input-------------------------- */
