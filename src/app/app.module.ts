@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -22,10 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [
     AppComponent,
     FooterComponent,
-    CartComponent,
     HomeComponent,
-    LoginComponent,
-    SignupComponent,
     TestimonialsComponent,
     AboutComponent,
     ContactComponent,
@@ -34,7 +30,10 @@ import { MatIconModule } from '@angular/material/icon';
     HeaderComponent,
     BrowserModule,
     AppRoutingModule,
+    CartComponent,
+    SignupComponent,
     NgbModule,
+    LoginComponent,
     BrowserAnimationsModule,
     HttpClientModule,
     ProductsComponent,
