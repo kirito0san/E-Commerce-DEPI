@@ -6,15 +6,15 @@
   'opsz' 24
 } */
 
-.header{
-  background-color: #F9ECE6;
+.header {
+  background-color: #f9ece6;
   justify-content: space-between;
   padding: 20px;
   border-radius: 20px 20px 0 0;
   position: relative;
 }
 
-ul{
+ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -24,42 +24,42 @@ ul{
   margin-left: 7px;
 } */
 
-a{
+a {
   text-decoration: none;
   font-weight: 500;
   color: #575753;
 }
 
-li{
+li {
   transition: 0.2s;
 }
 
-li:hover{
+li:hover {
   margin-top: -2px;
 }
 
-.active1{
-  background-color: #F5F5F5;
+.active1 {
+  background-color: #f5f5f5;
   padding: 10px 10px;
   border-radius: 6px;
-  color: #4AB0AD;
+  color: #4ab0ad;
 }
 
-.active2{
-  background-color: #F5F5F5;
+.active2 {
+  background-color: #f5f5f5;
   padding: 5px 5px;
   border-radius: 50%;
 }
 
-.active2 svg{
-  fill: #4AB0AD;
+.active2 svg {
+  fill: #4ab0ad;
 }
 
 @media (max-width: 768px) {
-  .header{
+  .header {
     padding: 10px;
   }
-  .header-left-large{
+  .header-left-large {
     flex-flow: column wrap;
     position: absolute;
     left: 0px;
@@ -70,34 +70,34 @@ li:hover{
     border-radius: 0 0 10px 10px;
   }
 
-  .header-left-large a{
+  .header-left-large a {
     padding: 5px 35px;
     width: 100%;
     display: block;
   }
 
-  .header-left-large li{
+  .header-left-large li {
     padding: 0;
   }
 
-  .active1{
+  .active1 {
     /* padding: 0;
     background: none; */
-    background-color: #4AB0AD;
+    background-color: #4ab0ad;
     color: antiquewhite;
   }
 
-  .header-left-large li:hover{
-    background-color: #F5F5F5 !important;
+  .header-left-large li:hover {
+    background-color: #f5f5f5 !important;
   }
-  .header-left-small button{
+  .header-left-small button {
     background-color: transparent;
     border: none;
   }
 }
 
 @media (min-width: 769px) {
-  .header-left-small{
+  .header-left-small {
     display: none !important;
   }
 }
@@ -116,10 +116,10 @@ li:hover{
 
 .search-input {
   position: absolute;
-  top: 25px;
+  top: 48px;
   right: 0;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #4ab0ad;
   border-radius: 4px;
   outline: none;
   transition: all 0.3s ease;

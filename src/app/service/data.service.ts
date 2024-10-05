@@ -7,25 +7,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class DataService {
   private apiUrl = 'https://fakestoreapi.com/products';
-  public serchResult= '';
-  private searchStringSource = new BehaviorSubject<string>('');
-
+  public searchResult = '';
   constructor(private http: HttpClient) {}
   getAllData(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
-  setSearch(search:string){
-this.serchResult = search
+  setSearch(search: string) {
+    this.searchResult = search;
   }
-  // searchProducts(term: string): Observable<any> {
-  //   const searchUrl = `${this.apiUrl}?title=${term}`;
-  //   return this.http.get<any[]>(searchUrl); // Adjust API endpoint based on API specs
-  // }
-
-  currentSearchString = this.searchStringSource.asObservable();
-
-  setSearchString(searchString: string) {
-    this.searchStringSource.next(searchString);
-  }
-
 }

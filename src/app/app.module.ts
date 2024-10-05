@@ -16,12 +16,11 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
     CartComponent,
     HomeComponent,
@@ -32,6 +31,7 @@ import {MatIconModule} from '@angular/material/icon';
     ContactComponent,
   ],
   imports: [
+    HeaderComponent,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
