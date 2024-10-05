@@ -15,11 +15,11 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
     HomeComponent,
     TestimonialsComponent,
@@ -27,6 +27,7 @@ import { ProductsComponent } from './pages/products/products.component';
     ContactComponent,
   ],
   imports: [
+    HeaderComponent,
     BrowserModule,
     AppRoutingModule,
     CartComponent,
@@ -36,6 +37,7 @@ import { ProductsComponent } from './pages/products/products.component';
     BrowserAnimationsModule,
     HttpClientModule,
     ProductsComponent,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

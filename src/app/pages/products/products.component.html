@@ -9,18 +9,22 @@
     <div *ngIf="filteredItems.length > 0">
       <div class="d-flex flex-wrap gap-5 justify-content-evenly">
         <div
-          *ngFor="let item of filteredItems"
+          *ngFor="let item of filteredItems; let i = index"
           class="example-card d-flex shadow-lg flex-column gap-2 justify-content-around"
           appearance="outlined"
         >
-          <img
-            mat-card-image
-            class="img-product w-50 h-50 align-self-center"
-            [src]="item.image"
-            alt="Photo of a Shiba Inu"
-          />
+          <div class="img-holder">
+            <img
+              mat-card-image
+              class="img-product"
+              [src]="item.image"
+              alt="Photo of a Shiba Inu"
+            />
+          </div>
           <div class="card-data">
-            <h2>{{ item.title }}</h2>
+            <h2>
+              {{ item.title }}
+            </h2>
             <h5 class="price">{{ item.price }} EGP</h5>
             <div class="d-flex flex-column justify-content-center gap-3">
               <div class="btn add-cart">
@@ -31,7 +35,7 @@
                   fontIcon="shopping_cart"
                 ></mat-icon>
               </div>
-              <div class="btn add-favorite">
+              <div (click)="addToFavorites(item)" class="btn add-favorite">
                 <p>Add to favorite</p>
                 <mat-icon
                   aria-hidden="false"

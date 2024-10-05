@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
-
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -20,10 +19,10 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
   ],
   standalone: true,
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, DoCheck {
   products: any = [];
+  searchTerm: string = '';
   favorites: any[] = []; // Initialize as an empty array
-
   constructor(
     private data: DataService,
     private authService: AuthServiceService
@@ -34,15 +33,11 @@ export class ProductsComponent implements OnInit {
       this.favorites = parsedUser.favorites || []; // Ensure favorites is an array
     }
   }
-
   ngOnInit() {
     this.data.getAllData().subscribe((data) => {
-      console.log(data);
       this.products = data;
     });
   }
-  searchTerm: string = '';
-
   get filteredItems(): any {
     if (!this.searchTerm) {
       return this.products;
@@ -50,6 +45,12 @@ export class ProductsComponent implements OnInit {
     return this.products.filter((item: any) =>
       item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+  ngDoCheck(): void {
+    if (this.data.searchResult) {
+      this.searchTerm = this.data.searchResult;
+      this.data.searchResult = '';
+    }
   }
   addToFavorites(item: any) {
     const existingFavorite = this.favorites.find((fav) => fav.id === item.id);
