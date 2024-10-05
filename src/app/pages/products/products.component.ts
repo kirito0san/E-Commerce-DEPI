@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,17 +19,15 @@ import { FormsModule } from '@angular/forms';
   ],
   standalone: true,
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, DoCheck {
   products: any = [];
+  searchTerm: string = '';
   constructor(private data: DataService) {}
   ngOnInit() {
     this.data.getAllData().subscribe((data) => {
-      console.log(data);
       this.products = data;
     });
   }
-  searchTerm: string = '';
-
   get filteredItems(): any {
     if (!this.searchTerm) {
       return this.products;
@@ -37,5 +35,12 @@ export class ProductsComponent implements OnInit {
     return this.products.filter((item: any) =>
       item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+  lastUsedInput: 'inputOne' | 'inputTwo' = 'inputOne'; // Track the last input used
+  ngDoCheck(): void {
+    if (this.data.searchResult) {
+      this.searchTerm = this.data.searchResult;
+      this.data.searchResult = '';
+    }
   }
 }
