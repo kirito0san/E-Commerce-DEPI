@@ -22,7 +22,6 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     CartComponent,
     HomeComponent,
     LoginComponent,
@@ -39,6 +38,7 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
     BrowserAnimationsModule,
     HttpClientModule,
     ProductsComponent,
+    FooterComponent,
 
   ],
   providers: [],

@@ -5,8 +5,8 @@
       <h6>Subscribe</h6>
       <p>Get 10% Off Your First Order</p>
       <div class="input">
-        <input type="text" placeholder="Enter Your Email" />
-        <svg
+        <input type="text" [(ngModel)]="email"  placeholder="Enter Your Email" />
+        <svg (click)="sendEmail()"
           x
           mlns=" http://www.w3.org/2000/svg"
           height="40px"
@@ -31,15 +31,15 @@
     </div>
     <div class="col-three">
       <h5>Account</h5>
-      <a routerLink="/login">Login</a>
-      <a routerLink="/cart">Cart</a>
-      <a routerLink="/signup">Register</a>
-      <p>Favorite</p>
+      <p><a routerLink="/login">Login</a></p>
+      <p><a routerLink="/cart">Cart</a></p>
+      <p><a routerLink="/signup">Register</a></p>
+      <p><a routerLink="favorite">Favorite</a></p>
     </div>
     <div class="col-four">
       <h5>Quick Link</h5>
-      <p>Shop</p>
-      <p>Contact</p>
+      <p><a routerLink="/Shop" >Shop</a></p>
+      <a routerLink="/contact">Contact</a>
     </div>
     <div class="col-five">
       <div class="img"></div>

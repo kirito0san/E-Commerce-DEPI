@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-  background: rgba(74, 176, 173, 1);
+  background: #4ab0ad;
   display: flex;
   justify-content: space-between;
   align-items: center;
