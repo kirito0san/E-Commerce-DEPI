@@ -22,7 +22,6 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
   declarations: [
     AppComponent,
     HomeComponent,
-    TestimonialsComponent,
     AboutComponent,
     ContactComponent,
     NewArrivalComponent,
@@ -43,6 +42,7 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
     ProductsComponent,
     MatIconModule,
     FooterComponent,
+    TestimonialsComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
