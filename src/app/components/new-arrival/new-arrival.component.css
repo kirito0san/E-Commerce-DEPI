@@ -14,7 +14,7 @@ body {
   align-items: center;
   gap: 70px;
   color: rgba(254, 247, 249, 1);
-  padding: 20px;
+  padding: 80px 20px;
   border-radius: 8px;
   max-width: 100%;
 }
@@ -24,17 +24,59 @@ body {
   align-items: center;
   width: 100%;
   max-width: 500px;
+  width: 500px;
+  position: relative;
+  align-self: end;
 }
 img {
   width: 500px;
 }
+.place-img img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(81px);
+  -webkit-transform: translateX(-50%) translateY(81px);
+  -moz-transform: translateX(-50%) translateY(81px);
+  -ms-transform: translateX(-50%) translateY(81px);
+  -o-transform: translateX(-50%) translateY(81px);
+}
 .box {
-  width: 30%;
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+  line-height: 21px !important;
 }
 
-@media (max-width: 1000px) {
-  img {
+@media (max-width: 1180px) {
+  .place-img {
+    order: 1;
+    width: 100% !important;
+  }
+  .place-img img {
+    position: static;
+    align-self: center !important;
     margin-top: 0px;
+    transform: translateX(0%) translateY(0%);
+    -webkit-transform: translateX(0%) translateY(0%);
+    -moz-transform: translateX(0%) translateY(0%);
+    -ms-transform: translateX(0%) translateY(0%);
+    -o-transform: translateX(0%) translateY(0%);
+  }
+  .box {
+    align-items: center;
+    flex-grow: 0 !important;
+    width: 100% !important;
+  }
+  .box > * {
+    width: 70% !important;
+  }
+  .buttons {
+    justify-content: space-around !important;
+  }
+  .buttons button {
+    width: 30% !important;
   }
   .container {
     flex-wrap: wrap;
@@ -42,10 +84,18 @@ img {
     justify-content: center;
     align-items: center;
     text-align: center;
+    padding-bottom: 0;
   }
   .place-img {
     max-width: 100%;
+    padding-top: 20px;
   }
+}
+h2 {
+  font-size: 50px;
+}
+h2 + p {
+  font-size: 20px;
 }
 @media (max-width: 1260px) {
   .container {
@@ -59,9 +109,7 @@ img {
     flex-grow: 1;
   }
 }
-h2 {
-  font-size: 50px;
-}
+
 @media (max-width: 767px) {
   .container {
     flex-direction: column;
@@ -73,6 +121,9 @@ h2 {
     width: 90%;
     margin-top: 50px;
   }
+  .box > * {
+    width: 90% !important;
+  }
 }
 @media (max-width: 435px) {
   h2 {
@@ -80,6 +131,27 @@ h2 {
   }
   img {
     width: 100%;
+  }
+  .box > * {
+    width: 100% !important;
+  }
+  .buttons {
+    justify-content: space-between !important;
+  }
+  .buttons button {
+    width: 40% !important;
+  }
+  .place-img {
+    padding: 0 !important;
+  }
+  .container {
+    gap: 0 !important;
+  }
+  p {
+    text-align: start !important;
+  }
+  .place-img {
+    padding-top: 10px !important;
   }
 }
 
