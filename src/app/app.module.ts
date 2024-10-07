@@ -22,7 +22,6 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     FooterComponent,
     HomeComponent,
-    TestimonialsComponent,
     AboutComponent,
     ContactComponent,
   ],
@@ -38,6 +37,7 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     ProductsComponent,
     MatIconModule,
+    TestimonialsComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
