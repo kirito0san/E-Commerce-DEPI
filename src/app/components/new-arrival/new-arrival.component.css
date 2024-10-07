@@ -10,18 +10,28 @@ body {
 .container {
   background: #4ab0ad;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   gap: 70px;
   color: rgba(254, 247, 249, 1);
   padding: 20px;
   border-radius: 8px;
+  max-width: 100%;
+}
+.place-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
 }
 img {
-  width: 350px;
-  height: 300px;
-  margin-top: 150px;
+  width: 500px;
 }
+.box {
+  width: 30%;
+}
+
 @media (max-width: 1000px) {
   img {
     margin-top: 0px;
@@ -33,27 +43,50 @@ img {
     align-items: center;
     text-align: center;
   }
-}
-
-@media (max-width: 767px) {
-  img {
-    width: 250px;
-    margin-top: 50px;
+  .place-img {
+    max-width: 100%;
   }
 }
-@media (max-width: 400px) {
-  img {
-    width: 220px;
-    height: 200px;
+@media (max-width: 1260px) {
+  .container {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: start;
+    align-items: center;
+    text-align: center;
+  }
+  .box {
+    flex-grow: 1;
   }
 }
-
 h2 {
   font-size: 50px;
 }
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+  }
+  .box {
+    width: 100%;
+  }
+  img {
+    width: 90%;
+    margin-top: 50px;
+  }
+}
+@media (max-width: 435px) {
+  h2 {
+    font-size: 2.1rem;
+  }
+  img {
+    width: 100%;
+  }
+}
+
 p {
   line-height: 1.8;
   margin: 25px 0px 25px 0px;
+  text-align: justify;
 }
 .buttons {
   display: flex;
@@ -63,17 +96,27 @@ p {
 
 .buttons button {
   width: 45%;
-  height: 30px;
   border-radius: 4px;
   font-size: 15px;
-  background: rgba(254, 247, 249, 1);
-  color: rgba(74, 176, 173, 1);
-  border: 1px solid rgba(254, 247, 249, 1);
+  padding: 8px 0;
   transition: all 0.5s;
 }
-
+.buy-now {
+  background-color: #2b8a9f;
+  color: rgb(255, 255, 255);
+  border: none;
+}
+button:not(.buy-now) {
+  color: rgba(74, 176, 173, 1);
+  border: 1px solid rgba(254, 247, 249, 1);
+}
 .buttons button:hover {
   background-color: rgba(74, 176, 173, 1);
   color: rgba(254, 247, 249, 1);
   border: 1px solid rgba(254, 247, 249, 1);
+}
+.buttons .buy-now:hover {
+  background-color: rgba(254, 247, 249, 1);
+  color: #2b8a9f;
+  border: 1px solid #2b8a9f;
 }

@@ -3,12 +3,12 @@
     <div class="col-one">
       <h5>Bears Hugs</h5>
       <h6>Subscribe</h6>
-      <p>Get 10% Off Your First Order</p>
+      <h6>Get 10% Off Your First Order</h6>
       <div class="input">
-        <input type="text" [(ngModel)]="email"  placeholder="Enter Your Email" />
-        <svg (click)="sendEmail()"
-          x
-          mlns=" http://www.w3.org/2000/svg"
+        <input type="text" [(ngModel)]="email" placeholder="Enter Your Email" />
+        <svg
+          (click)="sendEmail()"
+          xmlns=" http://www.w3.org/2000/svg"
           height="40px"
           viewBox="0 -960 960 960"
           width="20px"
@@ -38,8 +38,8 @@
     </div>
     <div class="col-four">
       <h5>Quick Link</h5>
-      <p><a routerLink="/Shop" >Shop</a></p>
-      <a routerLink="/contact">Contact</a>
+      <p><a routerLink="/products">Shop</a></p>
+      <p><a routerLink="/Contact">Contact</a></p>
     </div>
     <div class="col-five">
       <div class="img"></div>
@@ -47,9 +47,15 @@
         <a href="https://www.facebook.com/">
           <img src="assets/Icon-Facebook.svg" alt="" />
         </a>
-        <img src="assets/icon-instagram.svg" alt="" />
-        <img src="assets/Icon-Linkedin.svg" alt="" />
-        <img src="assets/icons-twitter.svg" alt="" />
+        <a href="https://www.instagram.com/">
+          <img src="assets/icon-instagram.svg" alt="" />
+        </a>
+        <a href="https://eg.linkedin.com"
+          ><img src="assets/Icon-Linkedin.svg" alt=""
+        /></a>
+        <a href="https://www.twitter.com/">
+          <img src="assets/icons-twitter.svg" alt=""
+        /></a>
       </div>
     </div>
   </div>

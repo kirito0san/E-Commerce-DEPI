@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css'],
   standalone: true,
-  imports:[FormsModule],
+  imports: [FormsModule, RouterLink],
 })
 export class FooterComponent {
   currentYear: number = new Date().getFullYear();
   email: string = '';
   sendEmail() {
     if (this.email) {
-      window.location.href = `mail to:${this.email}`;
+      window.location.href = ` mailto:${this.email}?subject=Subscribe&body=Hello, ${this.email}! `;
     } else {
-      alert("please enter a valid email adress")
+      alert('please enter a valid email adress');
     }
   }
 }
