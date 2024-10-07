@@ -1,21 +1,58 @@
-<div class="d-flex flex-wrap gap-3 justify-content-evenly py-5">
-  <mat-card
-    *ngFor="let item of products"
-    class="example-card d-flex flex-column gap-2 justify-content-around"
-    appearance="outlined"
-  >
-    <mat-card-header>
-      <mat-card-title> {{ item.title }}</mat-card-title>
-    </mat-card-header>
-    <img
-      mat-card-image
-      class="img-product w-50 h-50 align-self-center"
-      [src]="item.image"
-      alt="Photo of a Shiba Inu"
-    />
-    <mat-card-actions class="d-flex justify-content-center gap-3">
-      <button class="btn btn-outline-danger">add to cart</button>
-      <button class="btn btn-outline-primary">favorite</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="parent d-flex align-items-center flex-column">
+  <input
+    class="input-search"
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="Search..."
+  />
+  <div class="d-flex flex-wrap gap-5 justify-content-evenly py-5">
+    <div *ngIf="filteredItems.length > 0">
+      <div class="d-flex flex-wrap gap-5 justify-content-evenly">
+        <div
+          *ngFor="let item of filteredItems; let i = index"
+          class="example-card d-flex shadow-lg flex-column gap-2 justify-content-around"
+          appearance="outlined"
+        >
+          <div class="img-holder">
+            <img
+              mat-card-image
+              class="img-product"
+              [src]="item.image"
+              alt="Photo of a Shiba Inu"
+            />
+          </div>
+          <div class="card-data">
+            <h2>
+              {{ item.title }}
+            </h2>
+            <h5 class="price">{{ item.price }} EGP</h5>
+            <div class="d-flex flex-column justify-content-center gap-3">
+              <div class="btn add-cart">
+                <p>Add to cart</p>
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example shopping_cart icon"
+                  fontIcon="shopping_cart"
+                ></mat-icon>
+              </div>
+              <div (click)="addToFavorites(item)" class="btn add-favorite">
+                <p>Add to favorite</p>
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Example favorite icon"
+                  fontIcon="favorite"
+                ></mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="filteredItems.length === 0 && searchTerm">
+      No results found.
+    </div>
+  </div>
+</div>
+<div *ngFor="let item of favorites">
+  {{ item.title }}
 </div>
