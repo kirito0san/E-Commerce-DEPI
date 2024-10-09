@@ -22,7 +22,8 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 export class ProductsComponent implements OnInit, DoCheck {
   products: any = [];
   searchTerm: string = '';
-  favorites: any[] = []; // Initialize as an empty array
+  favorites: any[] = [];
+  cart: any[] = [];
   constructor(
     private data: DataService,
     private authService: AuthServiceService
@@ -31,6 +32,7 @@ export class ProductsComponent implements OnInit, DoCheck {
     if (user) {
       const parsedUser = JSON.parse(user);
       this.favorites = parsedUser.favorites || []; // Ensure favorites is an array
+      this.cart = parsedUser.cart || []; // Ensure favorites is an array
     }
   }
   ngOnInit() {
@@ -52,9 +54,29 @@ export class ProductsComponent implements OnInit, DoCheck {
       this.data.searchResult = '';
     }
   }
+  addToCart(item: any) {
+    const existingCart = this.cart.find((cart) => cart.id === item.id);
+    if (!existingCart) {
+      item.quantity = 1;
+      this.cart.push({ ...item });
+      console.log('Item added to cart:', item);
+    } else {
+      existingCart.quantity = (existingCart.quantity || 0) + 1;
+      console.log('Item is already in cart');
+    }
+    this.authService
+      .saveCart(JSON.parse(localStorage.getItem('user')!).id, this.cart)
+      .subscribe(
+        (response) => {
+          console.log('Favorites saved successfully', response);
+        },
+        (error) => {
+          console.error('Error saving favorites', error);
+        }
+      );
+  }
   addToFavorites(item: any) {
     const existingFavorite = this.favorites.find((fav) => fav.id === item.id);
-
     if (!existingFavorite) {
       item.quantity = 1;
       this.favorites.push({ ...item });
@@ -63,12 +85,6 @@ export class ProductsComponent implements OnInit, DoCheck {
       existingFavorite.quantity = (existingFavorite.quantity || 0) + 1;
       console.log('Item is already in favorites');
     }
-
-    localStorage.setItem(
-      'favorites',
-      JSON.stringify({ favorites: this.favorites })
-    );
-
     this.authService
       .saveFavorites(
         JSON.parse(localStorage.getItem('user')!).id,

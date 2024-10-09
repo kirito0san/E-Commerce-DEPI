@@ -23,15 +23,17 @@ export class LoginComponent implements OnInit {
   usersData: any = null;
   user: any = null;
   signupForm!: FormGroup;
+  login: boolean = false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthServiceService,
     private router: Router
-  ) {}
-  ngOnInit() {
+  ) {
     this.authService.getAllUser().subscribe((data) => {
       this.usersData = data;
     });
+  }
+  ngOnInit() {
     this.signupForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -47,10 +49,11 @@ export class LoginComponent implements OnInit {
             (user: any) => user.email === email && user.password === password
           );
           if (this.user) {
+            this.authService.logInIcon();
             this.authService.favorites = this.user.favorites;
             this.authService.cart = this.user.cart;
             localStorage.setItem('user', JSON.stringify(this.user));
-            // this.router.navigate(['/']);
+            this.router.navigate(['/']);
             console.log('Login successful', response);
           } else {
             alert('cheek the email or password');

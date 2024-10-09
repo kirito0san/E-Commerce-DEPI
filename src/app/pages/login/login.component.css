@@ -9,6 +9,8 @@ form {
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
+  background-color: WHITE;
+  box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.277);
 }
 .inactive-btn {
   background-color: #ccc;

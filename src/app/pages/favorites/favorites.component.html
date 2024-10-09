@@ -1,8 +1,8 @@
 <div>
-  <h2 class="fs-1">cart</h2>
+  <h2 class="fs-1">favorites</h2>
   <div class="d-flex flex-wrap gap-3 justify-content-evenly py-5">
     <mat-card
-      *ngFor="let item of cart"
+      *ngFor="let item of favorites"
       class="example-card d-flex flex-column gap-2 justify-content-around"
       appearance="outlined"
     >
@@ -17,8 +17,11 @@
       />
       <mat-card-actions class="d-flex justify-content-center gap-3">
         <button class="btn btn-outline-danger">add to cart</button>
-        <button (click)="deleteCart(item.id)" class="btn btn-outline-primary">
-          delete form cart
+        <button
+          (click)="deleteFavorites(item.id)"
+          class="btn btn-outline-primary"
+        >
+          delete form favorites
         </button>
       </mat-card-actions>
     </mat-card>

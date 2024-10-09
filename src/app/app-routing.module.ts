@@ -8,6 +8,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { TestimonialsComponent } from './pages/testimonials/testimonials.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'Testimonials', component: TestimonialsComponent },
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
+  { path: 'Favorites', component: FavoritesComponent },
 ];
 
 @NgModule({

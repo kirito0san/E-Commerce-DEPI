@@ -5,23 +5,20 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor and ngIf
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'],
+  selector: 'app-favorites',
+  templateUrl: './favorites.component.html',
+  styleUrls: ['./favorites.component.css'],
   imports: [MatCardModule, MatButtonModule, CommonModule],
   standalone: true,
 })
-export class CartComponent {
-  cart!: any[];
+export class FavoritesComponent {
+  favorites!: any[];
   constructor(private userData: AuthServiceService) {
-    this.cart = JSON.parse(localStorage.getItem('user')!)?.cart;
+    this.favorites = JSON.parse(localStorage.getItem('user')!)?.favorites;
   }
-  deleteCart(id: any) {
+  deleteFavorites(id: any) {
     const userId = JSON.parse(localStorage.getItem('user')!)?.id; // Get user ID from local storage
-    this.cart = this.cart.filter((item: any) => item.id !== id);
-    const user = JSON.parse(localStorage.getItem('user')!);
-    user.cart = this.cart;
-    localStorage.setItem('user', JSON.stringify(user));
-    this.userData.deleteCart(userId, this.cart).subscribe(); // Pass userId and updated cart
+    this.favorites = this.favorites.filter((item: any) => item.id !== id);
+    this.userData.deleteFavorites(userId, this.favorites).subscribe(); // Pass userId and updated favorites // Update local storage
   }
 }

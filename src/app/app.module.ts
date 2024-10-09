@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NewArrivalComponent } from './components/new-arrival/new-arrival.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
     NewArrivalComponent,
   ],
   imports: [
+    FavoritesComponent,
     HeaderComponent,
     CartComponent,
     FooterComponent,
