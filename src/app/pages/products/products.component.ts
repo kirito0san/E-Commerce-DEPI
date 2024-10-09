@@ -6,6 +6,16 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
+interface Product {
+  id: number;
+  name: string;
+  email: string;
+  cart?: any[]; // Change from number to any[] to represent an array of cart items
+  password: string;
+  favorites?: any[]; // Change from string to any[] to represent an array of favorite items
+  phoneNumber: string;
+  quantity?: number;
+}
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -22,18 +32,21 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 export class ProductsComponent implements OnInit, DoCheck {
   products: any = [];
   searchTerm: string = '';
-  favorites: any[] = [];
-  cart: any[] = [];
+  favorites: any[] = []; // Change from [] to any[] for proper typing
+  cart: any[] = []; // Change from [] to any[] for proper typing
+  userData: Product | undefined;
   constructor(
     private data: DataService,
     private authService: AuthServiceService
   ) {
-    const user = localStorage.getItem('user');
-    if (user) {
-      const parsedUser = JSON.parse(user);
-      this.favorites = parsedUser.favorites || []; // Ensure favorites is an array
-      this.cart = parsedUser.cart || []; // Ensure favorites is an array
-    }
+    const user = JSON.parse(localStorage.getItem('user')!);
+    this.authService.getUserData(user).subscribe((data) => {
+      this.userData = data;
+      if (this.userData) {
+        this.favorites = this.userData.favorites || []; // Ensure favorites is an array
+        this.cart = this.userData.cart || []; // Ensure cart is an arra
+      }
+    });
   }
   ngOnInit() {
     this.data.getAllData().subscribe((data) => {
@@ -59,44 +72,33 @@ export class ProductsComponent implements OnInit, DoCheck {
     if (!existingCart) {
       item.quantity = 1;
       this.cart.push({ ...item });
-      console.log('Item added to cart:', item);
     } else {
       existingCart.quantity = (existingCart.quantity || 0) + 1;
-      console.log('Item is already in cart');
     }
-    this.authService
-      .saveCart(JSON.parse(localStorage.getItem('user')!).id, this.cart)
-      .subscribe(
-        (response) => {
-          console.log('Favorites saved successfully', response);
-        },
-        (error) => {
-          console.error('Error saving favorites', error);
-        }
-      );
+    this.authService.saveCart(this.userData!.id, this.cart).subscribe(
+      (response) => {
+        console.log('Favorites saved successfully', response);
+      },
+      (error) => {
+        console.error('Error saving favorites', error);
+      }
+    );
   }
   addToFavorites(item: any) {
     const existingFavorite = this.favorites.find((fav) => fav.id === item.id);
     if (!existingFavorite) {
       item.quantity = 1;
       this.favorites.push({ ...item });
-      console.log('Item added to favorites:', item);
     } else {
       existingFavorite.quantity = (existingFavorite.quantity || 0) + 1;
-      console.log('Item is already in favorites');
     }
-    this.authService
-      .saveFavorites(
-        JSON.parse(localStorage.getItem('user')!).id,
-        this.favorites
-      )
-      .subscribe(
-        (response) => {
-          console.log('Favorites saved successfully', response);
-        },
-        (error) => {
-          console.error('Error saving favorites', error);
-        }
-      );
+    this.authService.saveFavorites(this.userData!.id, this.favorites).subscribe(
+      (response) => {
+        console.log('Favorites saved successfully', response);
+      },
+      (error) => {
+        console.error('Error saving favorites', error);
+      }
+    );
   }
 }

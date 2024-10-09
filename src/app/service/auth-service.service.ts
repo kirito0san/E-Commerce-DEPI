@@ -38,18 +38,11 @@ export class AuthServiceService {
       })
     );
   }
-  saveFavorites(userId: string, favorites: any[]): Observable<any> {
+  saveFavorites(userId: number, favorites: any[]): Observable<any> {
     const apiUrl = `${this.apiUrl}/${userId}`; // Replace with your API URL
-    localStorage.setItem(
-      'user',
-      JSON.stringify({
-        ...JSON.parse(localStorage.getItem('user')!),
-        favorites,
-      })
-    );
     return this.http.patch(apiUrl, { favorites });
   }
-  saveCart(userId: string, cart: any[]): Observable<any> {
+  saveCart(userId: number, cart: any[]): Observable<any> {
     const apiUrl = `${this.apiUrl}/${userId}`; // Replace with your API URL
     return this.http.patch(apiUrl, { cart });
   }
@@ -57,28 +50,17 @@ export class AuthServiceService {
   getAllUser(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
+  getUserData(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
 
   deleteCart(userId: string, cart: any[]): Observable<any> {
     const apiUrl = `${this.apiUrl}/${userId}`;
-    localStorage.setItem(
-      'user',
-      JSON.stringify({
-        ...JSON.parse(localStorage.getItem('user')!),
-        favorites: this.cart,
-      })
-    );
     return this.http.patch(apiUrl, { cart });
   }
 
   deleteFavorites(userId: string, favorites: any[]): Observable<any> {
     const apiUrl = `${this.apiUrl}/${userId}`;
-    localStorage.setItem(
-      'user',
-      JSON.stringify({
-        ...JSON.parse(localStorage.getItem('user')!),
-        favorites: this.favorites,
-      })
-    );
     return this.http.patch(apiUrl, { favorites }); // Use PATCH to update the favorites
   }
 }

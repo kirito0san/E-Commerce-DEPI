@@ -16,7 +16,9 @@
         alt="Photo of a Shiba Inu"
       />
       <mat-card-actions class="d-flex justify-content-center gap-3">
-        <button class="btn btn-outline-danger">add to cart</button>
+        <button (click)="AddToCart(item)" class="btn btn-outline-danger">
+          add to cart
+        </button>
         <button
           (click)="deleteFavorites(item.id)"
           class="btn btn-outline-primary"

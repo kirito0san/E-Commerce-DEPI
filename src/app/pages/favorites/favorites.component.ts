@@ -13,12 +13,28 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor
 })
 export class FavoritesComponent {
   favorites!: any[];
+  cart!: any[];
   constructor(private userData: AuthServiceService) {
-    this.favorites = JSON.parse(localStorage.getItem('user')!)?.favorites;
+    let userId = JSON.parse(localStorage.getItem('user')!);
+    this.userData.getUserData(userId).subscribe((data) => {
+      this.favorites = data.favorites;
+      this.cart = data.cart;
+    });
+  }
+  AddToCart(item: any) {
+    const existingCart = this.cart.find((cart) => cart.id === item.id);
+    if (!existingCart) {
+      item.quantity = 1;
+      this.cart.push({ ...item });
+    } else {
+      existingCart.quantity = (existingCart.quantity || 0) + 1;
+    }
+    const userId = JSON.parse(localStorage.getItem('user')!);
+    this.userData.saveCart(userId, this.cart).subscribe();
   }
   deleteFavorites(id: any) {
-    const userId = JSON.parse(localStorage.getItem('user')!)?.id; // Get user ID from local storage
+    const userId = JSON.parse(localStorage.getItem('user')!);
     this.favorites = this.favorites.filter((item: any) => item.id !== id);
-    this.userData.deleteFavorites(userId, this.favorites).subscribe(); // Pass userId and updated favorites // Update local storage
+    this.userData.deleteFavorites(userId, this.favorites).subscribe();
   }
 }

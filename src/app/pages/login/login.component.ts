@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
             this.authService.logInIcon();
             this.authService.favorites = this.user.favorites;
             this.authService.cart = this.user.cart;
-            localStorage.setItem('user', JSON.stringify(this.user));
+            localStorage.setItem('user', JSON.stringify(this.user.id));
             this.router.navigate(['/']);
             console.log('Login successful', response);
           } else {
