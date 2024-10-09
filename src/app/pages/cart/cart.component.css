@@ -1,0 +1,68 @@
+body{
+  font-size: 15px;
+  @media(max-width: 768px){
+    .parent div{
+      width: 90%;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container button {
+  background-color: #FE608A;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.coupon {
+  display: flex;
+  gap: 15px;
+  }
+
+
+.cart-total {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: 1px solid #ccc;
+  width: 470px;
+  height:400px;
+}
+
+.total-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.total-item span:first-child {
+  font-weight: bold;
+}
+
+.cart-total button {
+ align-self: center;
+  align-items: center;
+  background-color: #FE608A;
+  color: #FAFAFA;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 300PX;
+margin: 10px;
+}
+
