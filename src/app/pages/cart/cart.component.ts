@@ -16,14 +16,13 @@ export class CartComponent implements OnInit {
   cart!: any[];
   constructor(private data: AuthServiceService) {
     this.cart = this.data.cart;
-    this.favorites = JSON.parse(localStorage.getItem('user')!).favorites;
+    this.favorites = JSON.parse(localStorage.getItem('user')!)?.favorites || [];
     console.log(this.cart);
     console.log(this.favorites);
   }
   ngOnInit(): void {
     this.cart = this.data.cart;
-    this.favorites = JSON.parse(localStorage.getItem('user')!).favorites;
-
+    this.favorites = JSON.parse(localStorage.getItem('user')!)?.favorites;
     console.log(this.cart);
     console.log(this.favorites);
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
