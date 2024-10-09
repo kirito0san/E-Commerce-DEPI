@@ -3,7 +3,7 @@
   color: rgba(254, 247, 249, 1);
   border-radius: 8px;
   max-width: 100% !important;
-  padding: 20px 20px;
+  padding: 30px;
 }
 h5 {
   margin-bottom: 30px;
@@ -100,7 +100,8 @@ h5 {
   position: relative;
 }
 .col-three a,
-.col-four a {
+.col-four a,
+.col-two a {
   text-decoration: none;
   color: #fef6f8;
   transition: 0.3s;

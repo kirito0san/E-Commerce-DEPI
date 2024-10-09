@@ -67,8 +67,7 @@
       >
     </li>
   </ul>
-
-  <ul class="d-flex gap-2 flex-wrap">
+  <ul class="d-flex right-icons gap-2 align-items-center flex-wrap">
     <li>
       <a
         routerLink="/signup"
@@ -120,20 +119,22 @@
           /></svg
       ></a>
     </li>
-    <!-- <li><a routerLink="/favorit" routerLinkActive="active2" [routerLinkActiveOptions]="{ exact: true }"><svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#5f6368"><path d="M765-144 526-383q-30 22-65.79 34.5-35.79 12.5-76.18 12.5Q284-336 214-406t-70-170q0-100 70-170t170-70q100 0 170 70t70 170.03q0 40.39-12.5 76.18Q599-464 577-434l239 239-51 51ZM384-408q70 0 119-49t49-119q0-70-49-119t-119-49q-70 0-119 49t-49 119q0 70 49 119t119 49Z"/></svg></a></li> -->
-    <div class="search-container" #searchContainer>
-      <i class="material-icons search-icon" (click)="toggleSearch()">search</i>
-      <input
-        type="text"
-        class="search-input"
-        placeholder="Search..."
-        [class.show]="showInput"
-        [(ngModel)]="searchTerm"
-        #searchInput
-        (keyup.enter)="toggleSearch()"
-      />
-    </div>
-    <!-- Display Search Results -->
+    <li>
+      <div class="search-container" #searchContainer>
+        <i class="material-icons search-icon" (click)="toggleSearch()"
+          >search</i
+        >
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search..."
+          [class.show]="showInput"
+          [(ngModel)]="searchTerm"
+          #searchInput
+          (keyup.enter)="toggleSearch()"
+        />
+      </div>
+    </li>
     <ul *ngIf="filteredProducts.length > 0">
       <li *ngFor="let product of filteredProducts">{{ product.title }}</li>
     </ul>
