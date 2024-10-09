@@ -23,7 +23,6 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    TestimonialsComponent,
     AboutComponent,
     ContactComponent,
     NewArrivalComponent,
@@ -45,6 +44,7 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
     ProductsComponent,
     MatIconModule,
     FooterComponent,
+    TestimonialsComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
