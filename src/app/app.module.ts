@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NewArrivalComponent } from './components/new-arrival/new-arrival.component';
+import { ErrorComponent } from './pages/error/error.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { MinMapComponent } from './components/min-map/min-map.component';
 
@@ -27,6 +28,7 @@ import { MinMapComponent } from './components/min-map/min-map.component';
     AboutComponent,
     ContactComponent,
     NewArrivalComponent,
+    ErrorComponent,
     MinMapComponent,
   ],
   imports: [
