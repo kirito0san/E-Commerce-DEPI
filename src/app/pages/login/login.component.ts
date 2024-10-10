@@ -28,11 +28,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthServiceService,
     private router: Router
-  ) {
-    this.authService.getAllUser().subscribe((data) => {
-      this.usersData = data;
-    });
-  }
+  ) {}
   ngOnInit() {
     this.signupForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -45,7 +41,7 @@ export class LoginComponent implements OnInit {
       const password = this.signupForm.get('password')?.value;
       this.authService.login().subscribe(
         (response) => {
-          this.user = this.usersData.find(
+          this.user = response.find(
             (user: any) => user.email === email && user.password === password
           );
           if (this.user) {
@@ -54,7 +50,6 @@ export class LoginComponent implements OnInit {
             this.authService.cart = this.user.cart;
             localStorage.setItem('user', JSON.stringify(this.user.id));
             this.router.navigate(['/']);
-            console.log('Login successful', response);
           } else {
             alert('cheek the email or password');
           }
@@ -63,7 +58,6 @@ export class LoginComponent implements OnInit {
           console.error('Login failed', error);
         }
       );
-      console.log('Form Submitted', this.signupForm.value);
     } else {
       console.log('Form is invalid');
     }

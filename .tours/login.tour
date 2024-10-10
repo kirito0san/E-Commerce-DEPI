@@ -1,0 +1,55 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "login",
+  "steps": [
+    {
+      "file": "src/app/pages/login/login.component.ts",
+      "selection": {
+        "start": {
+          "line": 32,
+          "character": 2
+        },
+        "end": {
+          "line": 34,
+          "character": 8
+        }
+      },
+      "description": "### when user inter login component\r\n```ts\r\n   this.authService.getAllUser().subscribe((data) => {\r\n      this.usersData = data;\r\n    });\r\n```\r\nthis will get all users data and save it in\r\n```ts\r\nthis.usersData\r\n```"
+    },
+    {
+      "file": "src/app/pages/login/login.component.ts",
+      "description": "### when user click on login \r\nonsubmit will run \r\n```ts\r\nonSubmit()\r\n```",
+      "line": 42
+    },
+    {
+      "file": "src/app/pages/login/login.component.ts",
+      "description": "### first \r\nit will check if the form is valid\r\n```ts \r\nthis.signupForm.valid\r\n```\r\n",
+      "line": 43
+    },
+    {
+      "file": "src/app/pages/login/login.component.ts",
+      "description": "#1 \r\nwill get user data by\r\n```ts\r\n  const email = this.signupForm.get('email')?.value;\r\n  const password = this.signupForm.get('password')?.value;\r\n```",
+      "line": 44
+    },
+    {
+      "file": "src/app/pages/login/login.component.ts",
+      "description": "#2 use the api to get all user \r\n```ts \r\nthis.authService.login()\r\n```",
+      "line": 42
+    },
+    {
+      "file": "src/app/pages/login/login.component.ts",
+      "description": "#3 then look to user data if he has account\r\n```ts \r\n this.user = response.find(\r\n            (user: any) => user.email === email && user.password === password\r\n          );\r\n```\r\n#### if he has account will go to [step7][#7]\r\n\r\n#### if not he will move to [step8][#8]",
+      "line": 45
+    },
+    {
+      "file": "src/app/pages/login/login.component.ts",
+      "description": "###7 if have account \r\n\r\nit will set login to true then the login icont will go \r\n```ts\r\nthis.authService.logInIcon();\r\n```\r\nit will save the user favorites in authService\r\n```ts\r\nthis.authService.favorites = this.user.favorites;\r\n```\r\nit will save the user cart in authService\r\n```ts\r\nthis.authService.cart = this.user.cart;\r\n```\r\nit will save the user iD in Locakstirage i will use it as a token\r\n```ts\r\nlocalStorage.setItem('user', JSON.stringify(this.user.id));\r\n```",
+      "line": 48
+    },
+    {
+      "file": "src/app/pages/login/login.component.ts",
+      "description": "# 8 if not \r\nuser will got alert cheek the email or password\r\n```ts\r\nalert('cheek the email or password');\r\n```",
+      "line": 54
+    }
+  ]
+}

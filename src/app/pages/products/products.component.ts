@@ -35,6 +35,7 @@ export class ProductsComponent implements OnInit, DoCheck {
   favorites: any[] = []; // Change from [] to any[] for proper typing
   cart: any[] = []; // Change from [] to any[] for proper typing
   userData: Product | undefined;
+  category: string = 'all';
   constructor(
     private data: DataService,
     private authService: AuthServiceService
@@ -54,12 +55,18 @@ export class ProductsComponent implements OnInit, DoCheck {
     });
   }
   get filteredItems(): any {
-    if (!this.searchTerm) {
-      return this.products;
+    let filteredProducts = this.products;
+    if (this.searchTerm) {
+      filteredProducts = filteredProducts.filter((item: any) =>
+        item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
     }
-    return this.products.filter((item: any) =>
-      item.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+    if (this.category !== 'all') {
+      filteredProducts = filteredProducts.filter(
+        (item: any) => item.category === this.category
+      );
+    }
+    return filteredProducts;
   }
   ngDoCheck(): void {
     if (this.data.searchResult) {

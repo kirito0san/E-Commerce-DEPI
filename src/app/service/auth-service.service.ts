@@ -34,7 +34,7 @@ export class AuthServiceService {
   login(): Observable<any> {
     return this.http.get(this.apiUrl).pipe(
       tap(() => {
-        this.logIn = true; // Set logIn to true on successful login
+        this.logIn = true;
       })
     );
   }

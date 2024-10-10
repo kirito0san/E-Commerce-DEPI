@@ -1,10 +1,24 @@
 <div class="parent d-flex align-items-center flex-column">
-  <input
-    class="input-search"
-    type="text"
-    [(ngModel)]="searchTerm"
-    placeholder="Search..."
-  />
+  <div class="d-flex justify-content-center gap-4">
+    <input
+      class="input-search"
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Search..."
+    />
+    <select
+      class="form-select w-25"
+      [(ngModel)]="category"
+      (change)="filteredItems()"
+      aria-label="Default select example"
+    >
+      <option selected value="all">All</option>
+      <option value="jewelery">Jewelery</option>
+      <option value="electronics">Electronics</option>
+      <option value="men's clothing">Men's Clothing</option>
+      <option value="women's clothing">Women's Clothing</option>
+    </select>
+  </div>
   <div class="d-flex flex-wrap gap-5 justify-content-evenly py-5">
     <div *ngIf="filteredItems.length > 0">
       <div class="d-flex flex-wrap gap-5 justify-content-evenly">
@@ -18,13 +32,11 @@
               mat-card-image
               class="img-product"
               [src]="item.image"
-              alt="Photo of a Shiba Inu"
+              alt="Product Image"
             />
           </div>
           <div class="card-data">
-            <h2>
-              {{ item.title }}
-            </h2>
+            <h2>{{ item.title }}</h2>
             <h5 class="price">{{ item.price }} EGP</h5>
             <div class="d-flex flex-column justify-content-center gap-3">
               <div (click)="addToCart(item)" class="btn add-cart">
@@ -52,7 +64,4 @@
       No results found.
     </div>
   </div>
-</div>
-<div *ngFor="let item of favorites">
-  {{ item.title }}
 </div>

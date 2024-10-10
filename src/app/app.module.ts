@@ -18,6 +18,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NewArrivalComponent } from './components/new-arrival/new-arrival.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { MinMapComponent } from './components/min-map/min-map.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
     AboutComponent,
     ContactComponent,
     NewArrivalComponent,
+    MinMapComponent,
   ],
   imports: [
     FavoritesComponent,
@@ -44,7 +46,7 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
     ProductsComponent,
     MatIconModule,
     FooterComponent,
-    TestimonialsComponent
+    TestimonialsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
