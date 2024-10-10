@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NewArrivalComponent } from './components/new-arrival/new-arrival.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
     AboutComponent,
     ContactComponent,
     NewArrivalComponent,
+    ErrorComponent,
   ],
   imports: [
     HeaderComponent,
