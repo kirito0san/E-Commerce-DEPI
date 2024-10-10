@@ -22,6 +22,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ErrorComponent } from './pages/error/error.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { MinMapComponent } from './components/min-map/min-map.component';
+import { CheckOutComponent } from './pages/check-out/check-out.component';
+import { CheckoutOneComponent } from './components/checkout-one/checkout-one.component';
+import { CheckoutTwoComponent } from './components/checkout-two/checkout-two.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,9 @@ import { MinMapComponent } from './components/min-map/min-map.component';
     ProductComponent,
     ErrorComponent,
     MinMapComponent,
+    CheckOutComponent,
+    CheckoutOneComponent,
+    CheckoutTwoComponent,
   ],
   imports: [
     FavoritesComponent,

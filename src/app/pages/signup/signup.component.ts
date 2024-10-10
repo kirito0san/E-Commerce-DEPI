@@ -43,11 +43,9 @@ export class SignupComponent implements OnInit {
       ],
     });
     this.authService.getAllUser().subscribe((data) => {
-      console.log('User list:', data);
       this.allEmail = data;
     });
   }
-  // Submit method
   onSubmit() {
     if (this.signupForm.valid) {
       const name = this.signupForm.get('name')?.value;

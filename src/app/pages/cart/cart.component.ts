@@ -3,12 +3,13 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor and ngIf
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  imports: [MatCardModule, MatButtonModule, CommonModule],
+  imports: [MatCardModule, MatButtonModule, CommonModule, RouterLink],
   standalone: true,
 })
 export class CartComponent {

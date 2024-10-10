@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "loginFormValid",
+  "steps": [
+    {
+      "file": "src/app/pages/login/login.component.ts",
+      "description": "### here i use formBuilder to make the valid \r\n```ts\r\n  this.signupForm = this.fb.group({\r\n      email: ['', [Validators.required, Validators.email]], //must be email\r\n      password: ['', [Validators.required, Validators.minLength(6)]], //min length 6\r\n    });\r\n```\r\n",
+      "line": 33
+    }
+  ]
+}

@@ -27,17 +27,16 @@
           class="example-card d-flex shadow-lg flex-column gap-2 justify-content-around"
           appearance="outlined"
         >
-          <div class="img-holder">
+          <div (click)="goToProductDetails(item.id)" class="img-holder">
             <img
               mat-card-image
               class="img-product"
               [src]="item.image"
-              (click)="goToProductDetails(item.id)"
               alt="Photo of a Shiba Inu"
             />
           </div>
           <div class="card-data">
-            <h2>{{ item.title }}</h2>
+            <h2 (click)="goToProductDetails(item.id)">{{ item.title }}</h2>
             <h5 class="price">{{ item.price }} EGP</h5>
             <div class="d-flex flex-column justify-content-center gap-3">
               <div (click)="addToCart(item)" class="btn add-cart">

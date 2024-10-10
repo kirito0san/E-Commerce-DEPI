@@ -11,6 +11,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { CheckOutComponent } from './pages/check-out/check-out.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,8 +23,9 @@ const routes: Routes = [
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
   { path: 'product/:id', component: ProductComponent },
-  { path: '**', component: ErrorComponent },
   { path: 'Favorites', component: FavoritesComponent },
+  { path: 'CheckOut', component: CheckOutComponent },
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({

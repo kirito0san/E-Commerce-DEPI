@@ -1,26 +1,26 @@
 /* Start Landding */
-.photo-content{
-  background-image: url(/assets/filtered\ photo\ \(1\).svg);
+.photo-content {
+  background-image: url("../../../assets/filtered photo (1).svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 41vh;
 }
 
-.photo-content p{
+.photo-content p {
   color: #fff;
   font-size: 30px;
   font-weight: 500;
 }
 
-.photo-content p{
+.photo-content p {
   width: 55%;
 }
 
-.photo-content button{
-  background-color: #F9ECE6;
-  border-color: #D9D9D9;
-  color: #4AB0AD;
+.photo-content a {
+  background-color: #f9ece6;
+  border-color: #d9d9d9;
+  color: #4ab0ad;
   padding: 10px 20px;
   transition: 0.4s;
   -webkit-transition: 0.4s;
@@ -29,45 +29,45 @@
   -o-transition: 0.4s;
 }
 
-.photo-content button:hover{
-  background-color: #4AB0AD;
-  color: #F9ECE6;
+.photo-content a:hover {
+  background-color: #4ab0ad;
+  color: #f9ece6;
   top: 106px;
   left: 201px;
 }
 
-@media(max-width:680px){
-  .photo-content p{
+@media (max-width: 680px) {
+  .photo-content p {
     font-size: 20px;
   }
-  .photo-content button{
+  .photo-content button {
     padding: 5px 10px;
   }
 }
 
-.card{
+.card {
   height: 280px;
 }
 
 /* ----------------------------End Landing---------------------------- */
 
 /* Start Testimonials */
-.stars{
-  color: #F1ADBF;
+.stars {
+  color: #f1adbf;
 }
 
-.personal-photo{
+.personal-photo {
   width: 40px;
   height: 40px;
-  border-radius:50% ;
-  -webkit-border-radius:50% ;
-  -moz-border-radius:50% ;
-  -ms-border-radius:50% ;
-  -o-border-radius:50% ;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
   overflow: hidden;
 }
 
-.personal-photo img{
+.personal-photo img {
   width: 100%;
   height: 100%;
 }
