@@ -5,11 +5,6 @@
   gap: 20px;
   padding: 0px;
   align-items: flex-start;
-  border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  -ms-border-radius: 8px;
-  -o-border-radius: 8px;
 }
 
 .container input {
@@ -18,7 +13,13 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
+.cart-total {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
 .container button {
   background-color: #fe608a;
   color: white;
