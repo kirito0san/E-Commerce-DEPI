@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { Router } from '@angular/router';
 interface Product {
   id: number;
   name: string;
@@ -38,7 +39,8 @@ export class ProductsComponent implements OnInit, DoCheck {
   category: string = 'all';
   constructor(
     private data: DataService,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private router: Router //Anfal
   ) {
     const user = JSON.parse(localStorage.getItem('user')!);
     this.authService.getUserData(user).subscribe((data) => {
@@ -107,5 +109,9 @@ export class ProductsComponent implements OnInit, DoCheck {
         console.error('Error saving favorites', error);
       }
     );
+  }
+
+  goToProductDetails(productId: number): void {
+    this.router.navigate(['/product', productId]); // Anfal
   }
 }

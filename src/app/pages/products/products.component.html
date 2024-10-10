@@ -32,7 +32,8 @@
               mat-card-image
               class="img-product"
               [src]="item.image"
-              alt="Product Image"
+              (click)="goToProductDetails(item.id)"
+              alt="Photo of a Shiba Inu"
             />
           </div>
           <div class="card-data">

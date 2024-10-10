@@ -8,6 +8,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { TestimonialsComponent } from './pages/testimonials/testimonials.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { ProductComponent } from './pages/product/product.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'Testimonials', component: TestimonialsComponent },
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
+  { path: 'product/:id', component: ProductComponent },
   { path: '**', component: ErrorComponent },
   { path: 'Favorites', component: FavoritesComponent },
 ];
