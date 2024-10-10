@@ -18,6 +18,7 @@
               mat-card-image
               class="img-product"
               [src]="item.image"
+              (click)="goToProductDetails(item.id)"
               alt="Photo of a Shiba Inu"
             />
           </div>

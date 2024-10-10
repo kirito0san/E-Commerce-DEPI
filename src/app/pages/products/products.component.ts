@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -25,7 +26,8 @@ export class ProductsComponent implements OnInit, DoCheck {
   favorites: any[] = []; // Initialize as an empty array
   constructor(
     private data: DataService,
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private router: Router  //Anfal
   ) {
     const user = localStorage.getItem('user');
     if (user) {
@@ -83,4 +85,9 @@ export class ProductsComponent implements OnInit, DoCheck {
         }
       );
   }
+
+  goToProductDetails(productId: number): void {
+    this.router.navigate(['/product', productId]); // Anfal
+  }
+
 }

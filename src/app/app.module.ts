@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NewArrivalComponent } from './components/new-arrival/new-arrival.component';
+import { ProductComponent } from './pages/product/product.component';
+import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
     AboutComponent,
     ContactComponent,
     NewArrivalComponent,
+    ProductComponent,
   ],
   imports: [
     HeaderComponent,
@@ -42,7 +45,7 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
     ProductsComponent,
     MatIconModule,
     FooterComponent,
-    TestimonialsComponent
+    TestimonialsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
