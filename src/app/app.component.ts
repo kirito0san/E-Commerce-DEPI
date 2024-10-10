@@ -1,4 +1,5 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -7,7 +8,14 @@ import { Component} from '@angular/core';
   styleUrls: ['./app.component.css'],
 
 })
-export class AppComponent{
+export class AppComponent implements OnInit{
   title = 'E-Commerce-DEPI';
-
+  constructor(private router: Router) {}
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0); // Instantly scroll to top without any animation
+      }
+    });
+  }
 }
