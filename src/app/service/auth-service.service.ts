@@ -11,6 +11,7 @@ export class AuthServiceService {
   public favorites = [];
   public cart = [];
   public logIn: boolean = localStorage.getItem('user') ? true : false; // Set to true if user exists, false otherwise
+  public category: string = 'all';
   constructor(private router: Router, private http: HttpClient) {
     this.logIn = localStorage.getItem('user') ? true : false;
   }

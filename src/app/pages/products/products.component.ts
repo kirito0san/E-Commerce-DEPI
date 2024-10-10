@@ -42,6 +42,9 @@ export class ProductsComponent implements OnInit, DoCheck {
     private authService: AuthServiceService,
     private router: Router //Anfal
   ) {
+    this.category = this.authService.category;
+    console.log(this.category);
+
     const user = JSON.parse(localStorage.getItem('user')!);
     this.authService.getUserData(user).subscribe((data) => {
       this.userData = data;
@@ -64,10 +67,11 @@ export class ProductsComponent implements OnInit, DoCheck {
       );
     }
     if (this.category !== 'all') {
-      filteredProducts = filteredProducts.filter(
-        (item: any) => item.category === this.category
-      );
+      filteredProducts = filteredProducts.filter((item: any) => {
+        return item.category === this.category;
+      });
     }
+
     return filteredProducts;
   }
   ngDoCheck(): void {

@@ -25,6 +25,7 @@ import { MinMapComponent } from './components/min-map/min-map.component';
 import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { CheckoutOneComponent } from './components/checkout-one/checkout-one.component';
 import { CheckoutTwoComponent } from './components/checkout-two/checkout-two.component';
+import { SliderComponent } from './components/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { CheckoutTwoComponent } from './components/checkout-two/checkout-two.com
     CheckoutTwoComponent,
   ],
   imports: [
+    SliderComponent,
     FavoritesComponent,
     HeaderComponent,
     CartComponent,
