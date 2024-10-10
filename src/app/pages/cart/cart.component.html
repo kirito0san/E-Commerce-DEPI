@@ -1,24 +1,28 @@
-<div>
-  <h2 class="fs-1">favorites</h2>
-  <div class="d-flex flex-wrap gap-3 justify-content-evenly py-5">
-    <mat-card
-      *ngFor="let item of favorites"
-      class="example-card d-flex flex-column gap-2 justify-content-around"
-      appearance="outlined"
-    >
-      <mat-card-header>
-        <mat-card-title> {{ item.title }}</mat-card-title>
-      </mat-card-header>
-      <img
-        mat-card-image
-        class="img-product w-50 h-50 align-self-center"
-        [src]="item.image"
-        alt="Photo of a Shiba Inu"
-      />
-      <mat-card-actions class="d-flex justify-content-center gap-3">
-        <button class="btn btn-outline-danger">add to cart</button>
-        <button class="btn btn-outline-primary">favorite</button>
-      </mat-card-actions>
-    </mat-card>
+<div class="container">
+  <div class="coupon">
+    <input type="text" placeholder="Coupon Code" />
+    <button>Apply Coupon</button>
+  </div>
+
+  <div class="cart">
+    <div class="cart-total">
+      <h2>Cart Total</h2>
+      <br />
+      <div class="total-item">
+        <span>Subtotal:</span>
+        <span>$1750</span>
+      </div>
+      <hr />
+      <div class="total-item">
+        <span>Shipping:</span>
+        <span>Free</span>
+      </div>
+      <hr />
+      <div class="total-item">
+        <span>Total:</span>
+        <span>$1750</span>
+      </div>
+      <button>Proceed to checkout</button>
+    </div>
   </div>
 </div>
