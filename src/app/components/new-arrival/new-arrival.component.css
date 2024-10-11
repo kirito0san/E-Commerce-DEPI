@@ -96,6 +96,7 @@ h2 {
 }
 h2 + p {
   font-size: 20px;
+  line-height: 25px;
 }
 @media (max-width: 1260px) {
   .container {

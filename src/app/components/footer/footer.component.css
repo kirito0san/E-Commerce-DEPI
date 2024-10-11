@@ -183,8 +183,6 @@ input::placeholder {
 .social img {
   width: 20px;
   height: 20px;
-  fill: red !important;
-  color: red !important;
 }
 .social svg {
   width: 20px;

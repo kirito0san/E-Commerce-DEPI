@@ -43,6 +43,62 @@ export class SliderComponent {
       // description: 'all category no sorting',
       place: `all`,
     },
+    {
+      src: '../../../assets/elc.jpg',
+      alt: `electronics`,
+      title: `electronics`,
+      // description: `electronics`,
+      place: `electronics`,
+    },
+    {
+      src: '../../../assets/apparel-1850804_640.jpg',
+      alt: `women's clothing`,
+      title: `women's clothing`,
+      // description: `women's clothing`,
+      place: `women's clothing`,
+    },
+    {
+      src: '../../../assets/man.jpg',
+      alt: `men's clothing`,
+      title: `men's clothing`,
+      // description: `men's clothing`,
+      place: `men's clothing`,
+    },
+    {
+      src: '../../../assets/all.jpg',
+      alt: 'all',
+      title: 'All category',
+      // description: 'all category no sorting',
+      place: `all`,
+    },
+    {
+      src: '../../../assets/elc.jpg',
+      alt: `electronics`,
+      title: `electronics`,
+      // description: `electronics`,
+      place: `electronics`,
+    },
+    {
+      src: '../../../assets/apparel-1850804_640.jpg',
+      alt: `women's clothing`,
+      title: `women's clothing`,
+      // description: `women's clothing`,
+      place: `women's clothing`,
+    },
+    {
+      src: '../../../assets/man.jpg',
+      alt: `men's clothing`,
+      title: `men's clothing`,
+      // description: `men's clothing`,
+      place: `men's clothing`,
+    },
+    {
+      src: '../../../assets/all.jpg',
+      alt: 'all',
+      title: 'All category',
+      // description: 'all category no sorting',
+      place: `all`,
+    },
   ];
 
   imageChunks: any[][] = [];

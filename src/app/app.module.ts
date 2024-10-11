@@ -26,6 +26,7 @@ import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { CheckoutOneComponent } from './components/checkout-one/checkout-one.component';
 import { CheckoutTwoComponent } from './components/checkout-two/checkout-two.component';
 import { SliderComponent } from './components/slider/slider.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { SliderComponent } from './components/slider/slider.component';
     MatIconModule,
     FooterComponent,
     TestimonialsComponent,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

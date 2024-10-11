@@ -1,28 +1,68 @@
 <div class="container">
-  <div class="coupon">
-    <input type="text" placeholder="Coupon Code" />
-    <button>Apply Coupon</button>
+  <div class="parent">
+    <nav>
+      <ul>
+        <li><p>Product</p></li>
+        <li><p>Price</p></li>
+        <li><p>Quantity</p></li>
+        <li><p>Subtotal</p></li>
+      </ul>
+    </nav>
+    <div *ngFor="let item of cart" class="box">
+      <div class="box-4">
+        <img [src]="item.image" alt="" />
+        <span>{{ item.title }}</span>
+      </div>
+      <div>
+        <span>{{ item.price | currency }}</span>
+      </div>
+      <div class="box-3">
+        <input
+          [value]="item.quantity"
+          (change)="quantity(data, item)"
+          type="number"
+          placeholder="0"
+          #data
+        />
+      </div>
+      <div class="box-3">
+        <span>{{ item.price * item.quantity | currency }}</span>
+      </div>
+    </div>
+    <nav class="total py-3 fs-6 fw-medium">
+      <p>Price</p>
+      <p>{{ totalCartCost }}</p>
+    </nav>
+    <div class="box-2">
+      <a routerLink="/products" class="btn btn-light">Black To Shop</a>
+    </div>
   </div>
 
-  <div class="cart">
-    <div class="cart-total">
-      <h2>Cart Total</h2>
-      <br />
-      <div class="total-item">
-        <span>Subtotal:</span>
-        <span>$1750</span>
+  <div class="container">
+    <div class="coupon">
+      <input type="text" placeholder="Coupon Code" />
+      <button>Apply Coupon</button>
+    </div>
+    <div class="cart">
+      <div class="cart-total">
+        <h2>Cart Total</h2>
+        <br />
+        <div class="total-item">
+          <span>Subtotal:</span>
+          <span>$1750</span>
+        </div>
+        <hr />
+        <div class="total-item">
+          <span>Shipping:</span>
+          <span>Free</span>
+        </div>
+        <hr />
+        <div class="total-item">
+          <span>Total:</span>
+          <span>$1750</span>
+        </div>
+        <a routerLink="/CheckOut">Proceed to checkout</a>
       </div>
-      <hr />
-      <div class="total-item">
-        <span>Shipping:</span>
-        <span>Free</span>
-      </div>
-      <hr />
-      <div class="total-item">
-        <span>Total:</span>
-        <span>$1750</span>
-      </div>
-      <a routerLink="/CheckOut">Proceed to checkout</a>
     </div>
   </div>
 </div>
