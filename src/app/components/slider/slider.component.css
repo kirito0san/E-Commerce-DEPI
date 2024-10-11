@@ -1,11 +1,26 @@
+
+
 .image-container {
   display: flex;
   justify-content: space-between;
+  margin-left: 40px !important;
+  margin-right: 40px !important;
+  position: relative;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 .image-wrapper {
-  width: 32%;
+  /*width: 32%;
+  */width: 260px;
+  height: 260px;
+  border-radius: 50%;
   position: relative;
   cursor: pointer;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  overflow: hidden;
 }
 .slider-image {
   width: 100%;
@@ -18,11 +33,13 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgb(156 131 125 / 88%);
   color: white;
+
   padding: 20px 10px 40px 10px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  text-align: center;
 }
 .image-caption h3 {
   margin: 0;
@@ -38,6 +55,7 @@
   margin-top: 20px;
   gap: 5px;
 }
+
 .carousel-controls span {
   margin: 0 10px;
   background-color: rgb(192, 9, 192);
@@ -62,7 +80,19 @@
   -moz-transition: 0.3s;
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
+  margin-left: 10px;
 }
+
+@media(max-width:768px){
+  .btnn{
+    padding: 5px 10px;
+  }
+}
+
 .btnn:hover {
   background-color: #f14673 !important;
 }
+
+
+
+/* #f191ab  */
