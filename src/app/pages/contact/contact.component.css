@@ -68,6 +68,7 @@ input {
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
 }
+
 input:focus {
   box-shadow: 10px 10px 20px rgba(49, 130, 48, 0.374) !important;
 }
@@ -147,6 +148,15 @@ p {
   }
 }
 
+@media (max-width: 444px) {
+  .form input{
+    width: 100%;
+  }
+  .form input:first-child{
+    margin-bottom: 1rem;
+  }
+}
+
 .left,
 .right {
   width: 50%;
@@ -196,3 +206,4 @@ margin-right: 1rem;
 .connect-with-us a{
   color: inherit;
 }
+
