@@ -3,31 +3,29 @@
     <img src="../../../assets/contact.svg" alt="" />
     <div class="container-child">
       <div class="left">
-        <h4>We Would Love To Hear From You.</h4>
-        <div class="form">
-          <input type="text" placeholder="Name" />
-          <input class="two" type="email" placeholder="*Email" />
-        </div>
-        <div class="comment">
-          <input type="text" placeholder="Comment" />
-        </div>
-        <button>Submit Now</button>
+        <h4 class="mb-4">We Would Love To Hear From You.</h4>
+        <form (ngSubmit)="sendEmail()">
+          <div class="form mb-4">
+            <input type="text" placeholder="Name" [(ngModel)]="name" name="name" required />
+            <input class="two" type="email" placeholder="*Email" type="email" [(ngModel)]="email" name="email" required />
+          </div>
+          <div class="comment mb-5">
+            <textarea id="comment" [(ngModel)]="comment" name="comment" required></textarea>
+            <label for="comment">Comment</label>
+          </div>
+          <button type="submit">Submit Now</button>
+        </form>
       </div>
-      <div class="right">
-        <h4>Connect With Us</h4>
+      <div class="right d-flex flex-column gap-4">
+        <h5>Connect With Us</h5>
         <div class="connect-with-us">
+            <p>Contact us via WhatsApp on <a href="https://wa.me/+11222333598" target="_blank">+11222333598</a></p>
           <div>
-            <h6>Contact us via WhatsApp:</h6>
-
-            <span> +11222333598</span>
-          </div>
-
-          <div>
-            <h6>Or send us an email:</h6>
-            <span> exclusive&#64;gmail.com</span>
+            <p class="mail">Or send us an email: <a href="mailto:BearHugs@gmail.com?subject=Hello%20there&body=Hello%20there">BearHugs&#64;gmail.com</a></p>
           </div>
         </div>
-        <h4 class="social-h4">Social media platforms</h4>
+        <div>
+          <h5 class="social-h4">Social media platforms</h5>
         <div class="social">
           <a href="https://www.facebook.com/">
             <svg
@@ -80,8 +78,8 @@
               <path
                 d="M11.5 9.05C12.417 8.113 13.611 7.5 15 7.5C16.4587 7.5 17.8576 8.07946 18.8891 9.11091C19.9205 10.1424 20.5 11.5413 20.5 13V20.5H18.5V13C18.5 12.0717 18.1313 11.1815 17.4749 10.5251C16.8185 9.86875 15.9283 9.5 15 9.5C14.0717 9.5 13.1815 9.86875 12.5251 10.5251C11.8687 11.1815 11.5 12.0717 11.5 13V20.5H9.5V8H11.5V9.05ZM4.5 6C4.10218 6 3.72064 5.84196 3.43934 5.56066C3.15804 5.27936 3 4.89782 3 4.5C3 4.10218 3.15804 3.72064 3.43934 3.43934C3.72064 3.15804 4.10218 3 4.5 3C4.89782 3 5.27936 3.15804 5.56066 3.43934C5.84196 3.72064 6 4.10218 6 4.5C6 4.89782 5.84196 5.27936 5.56066 5.56066C5.27936 5.84196 4.89782 6 4.5 6ZM3.5 8H5.5V20.5H3.5V8Z"
                 fill="#1E1E1E"
-              /></svg
-          ></a>
+              /></svg>
+          </a>
           <a href="https://www.twitter.com/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,11 +114,14 @@
             </svg>
           </a>
         </div>
-        <h4>Work time</h4>
+        </div>
+        <div>
+          <h5>Work time</h5>
         <p>
           We recieve your messages and inquiries <br />
           daily from 10am: 12pm.
         </p>
+        </div>
       </div>
     </div>
   </div>
