@@ -6,7 +6,10 @@ import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { MessageService } from 'src/app/service/message.service';
+import { filter } from 'rxjs';
 interface Product {
   id: number;
   name: string;
@@ -37,25 +40,36 @@ export class ProductsComponent implements OnInit, DoCheck {
   cart: any[] = []; // Change from [] to any[] for proper typing
   userData: Product | undefined;
   category: string = 'all';
+
   constructor(
     private data: DataService,
     private authService: AuthServiceService,
-    private router: Router //Anfal
+    private router: Router,
+    private showMessage: MessageService
   ) {
+    this.category = this.authService.category;
     const user = JSON.parse(localStorage.getItem('user')!);
     this.authService.getUserData(user).subscribe((data) => {
-      this.userData = data;
+      this.userData = data || [];
       if (this.userData) {
-        this.favorites = this.userData.favorites || []; // Ensure favorites is an array
-        this.cart = this.userData.cart || []; // Ensure cart is an arra
+        this.favorites = this.userData.favorites || [];
+        this.cart = this.userData.cart || [];
       }
     });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        if (this.router.url !== '/products') {
+          this.authService.category = 'all';
+        }
+      });
   }
   ngOnInit() {
     this.data.getAllData().subscribe((data) => {
       this.products = data;
     });
   }
+
   get filteredItems(): any {
     let filteredProducts = this.products;
     if (this.searchTerm) {
@@ -64,10 +78,11 @@ export class ProductsComponent implements OnInit, DoCheck {
       );
     }
     if (this.category !== 'all') {
-      filteredProducts = filteredProducts.filter(
-        (item: any) => item.category === this.category
-      );
+      filteredProducts = filteredProducts.filter((item: any) => {
+        return item.category === this.category;
+      });
     }
+
     return filteredProducts;
   }
   ngDoCheck(): void {
@@ -84,14 +99,18 @@ export class ProductsComponent implements OnInit, DoCheck {
     } else {
       existingCart.quantity = (existingCart.quantity || 0) + 1;
     }
-    this.authService.saveCart(this.userData!.id, this.cart).subscribe(
-      (response) => {
-        console.log('Favorites saved successfully', response);
-      },
-      (error) => {
-        console.error('Error saving favorites', error);
-      }
-    );
+    if (this.userData) {
+      this.authService.saveCart(this.userData!.id, this.cart).subscribe(
+        (response) => {
+          this.showMessage.showSuccess('Item Added To Cart');
+        },
+        (error) => {
+          console.error('Error saving cart', error);
+        }
+      );
+    } else {
+      this.showMessage.showError('You Have To Login');
+    }
   }
   addToFavorites(item: any) {
     const existingFavorite = this.favorites.find((fav) => fav.id === item.id);
@@ -101,16 +120,21 @@ export class ProductsComponent implements OnInit, DoCheck {
     } else {
       existingFavorite.quantity = (existingFavorite.quantity || 0) + 1;
     }
-    this.authService.saveFavorites(this.userData!.id, this.favorites).subscribe(
-      (response) => {
-        console.log('Favorites saved successfully', response);
-      },
-      (error) => {
-        console.error('Error saving favorites', error);
-      }
-    );
+    if (this.userData) {
+      this.authService
+        .saveFavorites(this.userData!.id, this.favorites)
+        .subscribe(
+          (response) => {
+            this.showMessage.showSuccess('Item Added To Favorites');
+          },
+          (error) => {
+            console.error('Error saving favorites', error);
+          }
+        );
+    } else {
+      this.showMessage.showError('You Have To login');
+    }
   }
-
   goToProductDetails(productId: number): void {
     this.router.navigate(['/product', productId]); // Anfal
   }

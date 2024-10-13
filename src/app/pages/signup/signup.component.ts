@@ -9,8 +9,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
-/** Error when invalid control is dirty, touched, or submitted. */
-
+import { MessageService } from 'src/app/service/message.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -25,7 +24,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthServiceService,
-    private router: Router
+    private router: Router,
+    private showMessage: MessageService
   ) {}
 
   ngOnInit() {
@@ -47,29 +47,24 @@ export class SignupComponent implements OnInit {
     });
   }
   onSubmit() {
-    if (this.signupForm.valid) {
-      const name = this.signupForm.get('name')?.value;
-      const email = this.signupForm.get('email')?.value;
-      const password = this.signupForm.get('password')?.value;
-      const phoneNumber = this.signupForm.get('number')?.value;
-      if (!this.allEmail.some((e) => e.email == email)) {
-        this.authService
-          .register({ name, email, password, phoneNumber })
-          .subscribe(
-            (response) => {
-              console.log('Registration successful', response);
-              this.router.navigate(['/login']);
-            },
-            (error) => {
-              console.error('Error during registration', error);
-            }
-          );
-      } else {
-        alert('Email already exists');
-      }
-      console.log('Form Submitted', this.signupForm.value);
+    const name = this.signupForm.get('name')?.value;
+    const email = this.signupForm.get('email')?.value;
+    const password = this.signupForm.get('password')?.value;
+    const phoneNumber = this.signupForm.get('number')?.value;
+    if (!this.allEmail.some((e) => e.email == email)) {
+      this.authService
+        .register({ name, email, password, phoneNumber })
+        .subscribe(
+          (response) => {
+            this.showMessage.showSuccess('Registration successful');
+            this.router.navigate(['/login']);
+          },
+          (error) => {
+            this.showMessage.showError('Registration failed');
+          }
+        );
     } else {
-      console.log('Form is invalid');
+      this.showMessage.showError('Registration failed ,Email already exists');
     }
   }
 }

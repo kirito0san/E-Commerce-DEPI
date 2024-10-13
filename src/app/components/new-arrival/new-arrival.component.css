@@ -18,6 +18,7 @@ body {
   border-radius: 8px;
   max-width: 100%;
 }
+
 .place-img {
   display: flex;
   justify-content: center;
@@ -28,9 +29,11 @@ body {
   position: relative;
   align-self: end;
 }
+
 img {
   width: 500px;
 }
+
 .place-img img {
   position: absolute;
   bottom: 0;
@@ -41,9 +44,9 @@ img {
   -ms-transform: translateX(-50%) translateY(81px);
   -o-transform: translateX(-50%) translateY(81px);
 }
+
 .box {
   width: 40%;
-
   display: flex;
   flex-direction: column;
   line-height: 21px !important;
@@ -54,6 +57,7 @@ img {
     order: 1;
     width: 100% !important;
   }
+
   .place-img img {
     position: static;
     align-self: center !important;
@@ -64,20 +68,25 @@ img {
     -ms-transform: translateX(0%) translateY(0%);
     -o-transform: translateX(0%) translateY(0%);
   }
+
   .box {
     align-items: center;
     flex-grow: 0 !important;
     width: 100% !important;
   }
+
   .box > * {
     width: 70% !important;
   }
+
   .buttons {
     justify-content: space-around !important;
   }
-  .buttons button {
+
+  .buttons a {
     width: 30% !important;
   }
+
   .container {
     flex-wrap: wrap;
     gap: 0px;
@@ -86,17 +95,22 @@ img {
     text-align: center;
     padding-bottom: 0;
   }
+
   .place-img {
     max-width: 100%;
     padding-top: 20px;
   }
 }
+
 h2 {
   font-size: 50px;
 }
+
 h2 + p {
   font-size: 20px;
+  line-height: 25px;
 }
+
 @media (max-width: 1260px) {
   .container {
     flex-wrap: wrap;
@@ -105,6 +119,7 @@ h2 + p {
     align-items: center;
     text-align: center;
   }
+
   .box {
     flex-grow: 1;
   }
@@ -114,42 +129,54 @@ h2 + p {
   .container {
     flex-direction: column;
   }
+
   .box {
     width: 100%;
   }
+
   img {
     width: 90%;
     margin-top: 50px;
   }
+
   .box > * {
     width: 90% !important;
   }
 }
+
 @media (max-width: 435px) {
   h2 {
     font-size: 2.1rem;
   }
+
   img {
     width: 100%;
   }
+
   .box > * {
     width: 100% !important;
   }
+
   .buttons {
     justify-content: space-between !important;
   }
-  .buttons button {
+
+  .buttons a {
     width: 40% !important;
   }
+
   .place-img {
     padding: 0 !important;
   }
+
   .container {
     gap: 0 !important;
   }
+
   p {
     text-align: start !important;
   }
+
   .place-img {
     padding-top: 10px !important;
   }
@@ -166,27 +193,32 @@ p {
   justify-content: space-between;
 }
 
-.buttons button {
+.buttons a {
   width: 45%;
   border-radius: 4px;
   font-size: 15px;
   padding: 8px 0;
   transition: all 0.5s;
+  text-decoration: none;
+  text-align: center;
 }
 .buy-now {
   background-color: #2b8a9f;
   color: rgb(255, 255, 255);
   border: none;
 }
-button:not(.buy-now) {
-  color: rgba(74, 176, 173, 1);
+a:not(.buy-now) {
+  color: rgb(43 138 159);
   border: 1px solid rgba(254, 247, 249, 1);
+  background-color: AZURE;
 }
-.buttons button:hover {
+
+.buttons a:hover {
   background-color: rgba(74, 176, 173, 1);
   color: rgba(254, 247, 249, 1);
   border: 1px solid rgba(254, 247, 249, 1);
 }
+
 .buttons .buy-now:hover {
   background-color: rgba(254, 247, 249, 1);
   color: #2b8a9f;

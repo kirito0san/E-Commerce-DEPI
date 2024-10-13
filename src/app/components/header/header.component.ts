@@ -37,7 +37,6 @@ export class HeaderComponent implements DoCheck {
     public userAuth: AuthServiceService
   ) {
     this.logIn = this.userAuth.logIn;
-    console.log(this.logIn);
   }
   ngDoCheck(): void {
     if (this.userAuth.logIn != this.logIn) {
@@ -92,6 +91,7 @@ export class HeaderComponent implements DoCheck {
   logOut() {
     this.userAuth.logout();
     this.logIn = this.userAuth.logIn;
-    this.route.navigate(['/']);
+
+    this.route.navigate(['/login']);
   }
 }
