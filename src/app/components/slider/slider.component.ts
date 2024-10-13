@@ -92,7 +92,8 @@ export class SliderComponent {
   imageChunks: any[][] = [];
 
   ngOnInit() {
-    this.imageChunks = this.chunkArray(this.images, 3);
+    this.updateImageChunks();
+  window.addEventListener('resize', this.updateImageChunks.bind(this));
   }
   onClick(i: string) {
     this.authServes.category = i;
@@ -112,5 +113,20 @@ export class SliderComponent {
 
   prev() {
     this.carousel.prev();
+  }
+
+
+  updateImageChunks() {
+    const screenWidth = window.innerWidth;
+    let chunkSize = 3;
+
+    if (screenWidth <= 768) {
+      chunkSize = 2;
+    }
+
+    if (screenWidth <= 576) {
+      chunkSize = 1;
+    }
+    this.imageChunks = this.chunkArray(this.images, chunkSize);
   }
 }
