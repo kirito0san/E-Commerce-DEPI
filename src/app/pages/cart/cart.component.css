@@ -42,13 +42,13 @@ a {
   padding: 15px;
   border: 1px solid #ccc;
   width: 470px;
-  height: 400px;
+  height: 100vh;
 }
 
 .total-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
+  margin-bottom: 80px;
 }
 
 .cart-total a {
