@@ -17,6 +17,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './pages/products/products.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NewArrivalComponent } from './components/new-arrival/new-arrival.component';
+import { ProductComponent } from './pages/product/product.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ErrorComponent } from './pages/error/error.component';
+import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { MinMapComponent } from './components/min-map/min-map.component';
+import { CheckOutComponent } from './pages/check-out/check-out.component';
+import { CheckoutOneComponent } from './components/checkout-one/checkout-one.component';
+import { CheckoutTwoComponent } from './components/checkout-two/checkout-two.component';
+import { SliderComponent } from './components/slider/slider.component';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,8 +36,16 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
     AboutComponent,
     ContactComponent,
     NewArrivalComponent,
+    ProductComponent,
+    ErrorComponent,
+    MinMapComponent,
+    CheckOutComponent,
+    CheckoutOneComponent,
+    CheckoutTwoComponent,
   ],
   imports: [
+    SliderComponent,
+    FavoritesComponent,
     HeaderComponent,
     CartComponent,
     FooterComponent,
@@ -42,7 +61,9 @@ import { NewArrivalComponent } from './components/new-arrival/new-arrival.compon
     ProductsComponent,
     MatIconModule,
     FooterComponent,
-    TestimonialsComponent
+    TestimonialsComponent,
+    FormsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,10 +1,17 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  ElementRef,
+  HostListener,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 import { DataService } from 'src/app/service/data.service';
 import { RouterModule } from '@angular/router';
+import { AuthServiceService } from 'src/app/service/auth-service.service';
 
 @Component({
   selector: 'app-header',
@@ -13,19 +20,29 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [FormsModule, RouterLink, RouterModule, CommonModule],
 })
-export class HeaderComponent {
+export class HeaderComponent implements DoCheck {
   showInput: boolean = false;
   searchTerm: string = ''; // Holds the user's search input
   filteredProducts: any[] = []; // Holds the search results
   isDropdownVisible: boolean = false;
   isDesktop = window.innerWidth >= 768;
-
+  logIn: boolean = false;
   // Reference to the input and container elements
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
   @ViewChild('searchContainer') searchContainer!: ElementRef;
 
-  constructor(private dataService: DataService, private route: Router) {}
-
+  constructor(
+    private dataService: DataService,
+    private route: Router,
+    public userAuth: AuthServiceService
+  ) {
+    this.logIn = this.userAuth.logIn;
+  }
+  ngDoCheck(): void {
+    if (this.userAuth.logIn != this.logIn) {
+      this.logIn = this.userAuth.logIn;
+    }
+  }
   // Toggles the input field visibility and focuses the input when shown
   toggleSearch() {
     this.showInput = !this.showInput;
@@ -70,5 +87,11 @@ export class HeaderComponent {
     if (this.isDesktop) {
       this.isDropdownVisible = false; // Close the menu when switching to desktop
     }
+  }
+  logOut() {
+    this.userAuth.logout();
+    this.logIn = this.userAuth.logIn;
+
+    this.route.navigate(['/login']);
   }
 }
