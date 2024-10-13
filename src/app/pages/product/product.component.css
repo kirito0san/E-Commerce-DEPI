@@ -1,10 +1,10 @@
-.parent{
+.parent {
   width: 95%;
   margin: 0 auto;
 }
 
-@media(max-width:768px){
-  .parent{
+@media (max-width: 768px) {
+  .parent {
     flex-flow: column;
     align-items: center;
     width: 90%;
@@ -12,8 +12,7 @@
   }
 }
 
-
-.photo{
+.photo {
   height: 100vh;
   background-color: white;
   border-radius: 5px;
@@ -27,21 +26,21 @@
   align-items: center;
 }
 
-@media(max-width:768px){
-  .photo{
+@media (max-width: 768px) {
+  .photo {
     max-height: 100vh;
     height: auto;
   }
 }
 
-.photo img{
+.photo img {
   width: 90%;
   max-width: 100%;
   max-height: 100%;
 }
 
-@media(max-width:768px){
-  .photo img{
+@media (max-width: 768px) {
+  .photo img {
     width: 100%;
   }
 }
@@ -55,26 +54,26 @@
   color: rgb(241, 172, 190);
 }
 
-.stars span svg{
-  fill: #FFAD33;
+.stars span svg {
+  fill: #ffad33;
 }
 
-.stars{
-  gap: 0.4rem
+.stars {
+  gap: 0.4rem;
 }
 
-@media(max-width:842px){
-  .star-parent{
+@media (max-width: 842px) {
+  .star-parent {
     gap: 2rem !important;
   }
 }
 
-.rating-count{
+.rating-count {
   color: darkgray;
   position: relative;
 }
 
-.rating-count::after{
+.rating-count::after {
   content: "";
   background-color: darkgrey;
   position: absolute;
@@ -84,30 +83,30 @@
   height: 25px;
 }
 
-.stock{
-  color: #4AB0AD;
+.stock {
+  color: #4ab0ad;
 }
 
-.last{
-  color: #F2BD03;
+.last {
+  color: #f2bd03;
 }
 
-.out-Stock{
+.out-Stock {
   color: red;
 }
 
-.availability{
+.availability {
   margin-bottom: 0.5rem;
 }
 /* ------------------End Handling Rating Stars---------------------- */
-.desc{
+.desc {
   line-height: 19px;
 }
 /* Start Size */
-.size{
+.size {
   margin: 22px 0;
 }
-.size button{
+.size button {
   border: 1px solid #ccc;
   border-radius: 5px;
   width: 35px;
@@ -116,22 +115,22 @@
   margin-top: -5px;
 }
 
-.size button:hover{
+.size button:hover {
   background-color: rgb(241, 172, 190);
   color: white;
 }
 
-.size button:active{
+.size button:active {
   opacity: 0.8;
 }
 
 .size button.selected {
-  background-color: #FF6584;
+  background-color: #ff6584;
   color: white;
 }
 /* --------------------End Size------------------------------------- */
 /* Start Counter & Buy Button */
-.quantity{
+.quantity {
   margin-top: -7px;
 }
 
@@ -142,6 +141,7 @@
   border-radius: 5px;
   overflow: hidden;
   width: fit-content;
+  height: fit-content;
 }
 
 .counter span {
@@ -153,7 +153,7 @@
 
 .counter-btn,
 .buy {
-  background-color: #FF6584;
+  background-color: #ff6584;
   color: white;
   border: none;
   padding: 5px 1.5rem;
@@ -161,26 +161,26 @@
   cursor: pointer;
 }
 
-.buy{
+.buy {
   border-radius: 4px;
   padding: 4px 2rem;
 }
 
-@media(max-width: 972px){
+@media (max-width: 972px) {
   .counter-btn,
-  .buy{
+  .buy {
     padding: 5px 1rem;
   }
 }
 
-@media(max-width: 827px){
-  .counter-btn{
+@media (max-width: 827px) {
+  .counter-btn {
     padding: 5px 0.9rem;
   }
-  .buy{
+  .buy {
     padding: 5px 1.2rem;
   }
-  .counter span{
+  .counter span {
     padding: 5px 1rem;
   }
 }
@@ -191,49 +191,49 @@
   opacity: 0.8;
 }
 /* ------------------------End Counter & Buy Button------------------------- */
-.favorite{
-  background-color:transparent;
+.favorite {
+  background-color: transparent;
   border: 1px solid lightgrey;
-    padding: 0 8px;
-    border-radius: 5px;
+  padding: 0 8px;
+  border-radius: 5px;
 }
 
-.favorite:hover{
-  background-color:#FF6584;
+.favorite:hover {
+  background-color: #ff6584;
 }
 
-.favorite:hover svg{
+.favorite:hover svg {
   fill: white;
 }
 
 button.favorited {
-  background-color: #FF6584;
+  background-color: #ff6584;
 }
 
-button.favorited svg{
+button.favorited svg {
   fill: white;
 }
 /* ------------------------------------------------------- */
 /* Start purchase */
-.purchase{
+.purchase {
   position: relative;
-    border: 1px solid darkgrey;
-    margin-top: 32px;
-    padding: 18px;
-    border-radius:5px ;
-    -webkit-border-radius:5px ;
-    -moz-border-radius:5px ;
-    -ms-border-radius:5px ;
-    -o-border-radius:5px ;
+  border: 1px solid darkgrey;
+  margin-top: 32px;
+  padding: 18px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
-@media(max-width: 768px){
-  .purchase{
+@media (max-width: 768px) {
+  .purchase {
     max-width: 18.5rem;
   }
 }
 
-.purchase::after{
+.purchase::after {
   content: "";
   background-color: darkgrey;
   position: absolute;
@@ -243,25 +243,30 @@ button.favorited svg{
   height: 1px;
 }
 
-.text-1{
+.text-1 {
   font-weight: 500;
   line-height: 1.2rem;
 }
 
-.small{
+.small {
   color: inherit;
 }
 
-@media(max-width: 920px){
-  .small{
+@media (max-width: 920px) {
+  .small {
     font-size: 12px;
     color: inherit !important;
   }
 }
 
-@media(max-width: 831px){
-  .small{
+@media (max-width: 831px) {
+  .small {
     font-size: 10px;
+  }
+}
+@media (max-width: 400px) {
+  .buy {
+    font-size: 14px;
   }
 }
 /* --------------------------------End purchase------------------------ */

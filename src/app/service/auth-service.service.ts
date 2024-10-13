@@ -7,7 +7,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthServiceService {
-  private apiUrl = 'https://retoolapi.dev/rGNpuZ/data'; // Replace with your API URL
+  private apiUrl = 'https://retoolapi.dev/AnjUau/data'; // Replace with your API URL
   public favorites = [];
   public cart = [];
   public logIn: boolean = localStorage.getItem('user') ? true : false; // Set to true if user exists, false otherwise
@@ -15,7 +15,7 @@ export class AuthServiceService {
   constructor(private router: Router, private http: HttpClient) {
     this.logIn = localStorage.getItem('user') ? true : false;
   }
-  logInIcon() {
+  logInUser() {
     this.logIn = true;
   }
   logout() {

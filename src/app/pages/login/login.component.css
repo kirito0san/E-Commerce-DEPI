@@ -17,6 +17,13 @@ form {
   color: #999;
   pointer-events: visible;
   cursor: not-allowed;
+  border: none;
+}
+.inactive-btn:focus,
+.inactive-btn:active {
+  background: #ccc;
+  color: #999;
+  border: none;
 }
 .active {
   width: fit-content;

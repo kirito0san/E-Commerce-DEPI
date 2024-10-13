@@ -8,7 +8,7 @@
         <li><p>Subtotal</p></li>
       </ul>
     </nav>
-    <div *ngFor="let item of cart" class="box">
+    <div *ngFor="let item of userCart" class="box">
       <div class="box-4">
         <img [src]="item.image" alt="" />
         <span>{{ item.title }}</span>
@@ -29,10 +29,6 @@
         <span>{{ item.price * item.quantity | currency }}</span>
       </div>
     </div>
-    <nav class="total py-3 fs-6 fw-medium">
-      <p>Price</p>
-      <p>{{ totalCartCost }}</p>
-    </nav>
     <div class="box-2">
       <a routerLink="/products" class="btn btn-light">Black To Shop</a>
     </div>
@@ -40,8 +36,8 @@
 
   <div class="container">
     <div class="coupon">
-      <input type="text" placeholder="Coupon Code" />
-      <button>Apply Coupon</button>
+      <input type="text" #Coupon placeholder="Coupon Code" />
+      <button (click)="activeCoupon(Coupon)">Apply Coupon</button>
     </div>
     <div class="cart">
       <div class="cart-total">
@@ -49,17 +45,20 @@
         <br />
         <div class="total-item">
           <span>Subtotal:</span>
-          <span>$1750</span>
+          <span>{{ this.totalCartCost | currency }}</span>
         </div>
         <hr />
         <div class="total-item">
           <span>Shipping:</span>
-          <span>Free</span>
+          <span>{{ couponIsActive ? "Free" : ("50" | currency) }}</span>
         </div>
         <hr />
         <div class="total-item">
           <span>Total:</span>
-          <span>$1750</span>
+          <span>{{
+            (couponIsActive ? this.totalCartCost : this.totalCartCost + 50)
+              | currency
+          }}</span>
         </div>
         <a routerLink="/CheckOut">Proceed to checkout</a>
       </div>

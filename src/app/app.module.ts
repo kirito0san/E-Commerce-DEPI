@@ -27,6 +27,7 @@ import { CheckoutOneComponent } from './components/checkout-one/checkout-one.com
 import { CheckoutTwoComponent } from './components/checkout-two/checkout-two.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     TestimonialsComponent,
     FormsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

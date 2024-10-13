@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor and ngIf
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MessageService } from 'src/app/service/message.service';
 
 @Component({
   selector: 'app-favorites',
@@ -13,16 +14,19 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatCardModule, MatButtonModule, MatIconModule, CommonModule],
   standalone: true,
 })
-
 export class FavoritesComponent {
   favorites!: any[];
   cart!: any[];
 
-  constructor(private userData: AuthServiceService, private router:Router) {
+  constructor(
+    private userData: AuthServiceService,
+    private showMessage: MessageService,
+    private router: Router
+  ) {
     let userId = JSON.parse(localStorage.getItem('user')!);
     this.userData.getUserData(userId).subscribe((data) => {
       this.favorites = data.favorites;
-      this.cart = data.cart;
+      this.cart = data.cart || [];
     });
   }
   AddToCart(item: any) {
@@ -30,13 +34,13 @@ export class FavoritesComponent {
     if (!existingCart) {
       item.quantity = 1;
       this.cart?.push({ ...item });
+      this.showMessage.showSuccess('Item Added To Cart');
     } else {
-      existingCart.quantity = (existingCart.quantity || 0) + 1;
+      this.showMessage.showInfo('Item Already In Cart');
+      existingCart.quantity = existingCart.quantity || 1;
     }
     const userId = JSON.parse(localStorage.getItem('user')!);
     this.userData.saveCart(userId, this.cart).subscribe();
-    console.log(this.cart);
-
   }
   deleteFavorites(id: any) {
     const userId = JSON.parse(localStorage.getItem('user')!);
@@ -47,6 +51,4 @@ export class FavoritesComponent {
   goToProductDetails(productId: number): void {
     this.router.navigate(['/product', productId]); // Anfal
   }
-
-
 }

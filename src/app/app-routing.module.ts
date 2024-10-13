@@ -12,19 +12,24 @@ import { ProductComponent } from './pages/product/product.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { CheckOutComponent } from './pages/check-out/check-out.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent, canActivate: [authGuard] },
   { path: 'Testimonials', component: TestimonialsComponent },
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
   { path: 'product/:id', component: ProductComponent },
-  { path: 'Favorites', component: FavoritesComponent },
-  { path: 'CheckOut', component: CheckOutComponent },
+  {
+    path: 'Favorites',
+    component: FavoritesComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'CheckOut', component: CheckOutComponent, canActivate: [authGuard] },
   { path: '**', component: ErrorComponent },
 ];
 

@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { MessageService } from 'src/app/service/message.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthServiceService,
-    private router: Router
+    private router: Router,
+    private showMessage: MessageService
   ) {}
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -36,30 +38,27 @@ export class LoginComponent implements OnInit {
     });
   }
   onSubmit() {
-    if (this.signupForm.valid) {
-      const email = this.signupForm.get('email')?.value;
-      const password = this.signupForm.get('password')?.value;
-      this.authService.login().subscribe(
-        (response) => {
-          this.user = response.find(
-            (user: any) => user.email === email && user.password === password
-          );
-          if (this.user) {
-            this.authService.logInIcon();
-            this.authService.favorites = this.user.favorites;
-            this.authService.cart = this.user.cart;
-            localStorage.setItem('user', JSON.stringify(this.user.id));
-            this.router.navigate(['/']);
-          } else {
-            alert('cheek the email or password');
-          }
-        },
-        (error) => {
-          console.error('Login failed', error);
+    const email = this.signupForm.get('email')?.value;
+    const password = this.signupForm.get('password')?.value;
+    this.authService.login().subscribe(
+      (response) => {
+        this.user = response.find(
+          (user: any) => user.email === email && user.password === password
+        );
+        if (this.user) {
+          this.authService.logInUser();
+          this.authService.favorites = this.user.favorites || [];
+          this.authService.cart = this.user.cart || [];
+          localStorage.setItem('user', JSON.stringify(this.user.id));
+          this.showMessage.showSuccess('Welcome Back');
+          this.router.navigate(['/']);
+        } else {
+          this.showMessage.showError('User Doesn`t Exist');
         }
-      );
-    } else {
-      console.log('Form is invalid');
-    }
+      },
+      (error) => {
+        this.showMessage.showError('server down');
+      }
+    );
   }
 }
