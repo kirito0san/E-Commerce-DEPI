@@ -55,7 +55,8 @@
   width: 40%;
   display: flex;
   flex-direction: column;
-  line-height: 21px !important;
+  gap: 1rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 1007px) {
@@ -71,7 +72,7 @@ h2 {
 p {
   font-size: 17px;
   line-height: 1.5;
-  margin: 15px 0px 25px 0px;
+
   text-align: justify;
 }
 
@@ -96,11 +97,11 @@ p {
   .place-img {
     order: 1;
     width: 70% !important;
-    transform: translateX(-17%) translateY(1rem);
+    transform: translateX(-25%) translateY(1rem);
     -webkit-transform: translateX(-25%) translateY(1rem);
-    -moz-transform: translateX(-17%) translateY(1rem);
-    -ms-transform: translateX(-17%) translateY(1rem);
-    -o-transform: translateX(-17%) translateY(1rem);
+    -moz-transform: translateX(-25%) translateY(1rem);
+    -ms-transform: translateX(-25%) translateY(1rem);
+    -o-transform: translateX(-25%) translateY(1rem);
   }
 
   img {
