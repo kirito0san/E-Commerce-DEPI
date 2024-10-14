@@ -38,7 +38,7 @@
   padding: 20px 0;
 }
 .img2 {
-  background-image: url("../../../assets/photo2.svg");
+  background-image: url("../../../assets/photo2.webp");
   background-size: cover;
   background-position: center;
 }
@@ -83,6 +83,6 @@ img {
   }
 }
 
-.item2 a{
+.item2 a {
   color: darkgreen;
 }

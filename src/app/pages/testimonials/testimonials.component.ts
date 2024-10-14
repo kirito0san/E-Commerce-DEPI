@@ -17,7 +17,7 @@ export class TestimonialsComponent {
       name: 'Ahmed Sayed',
       comment:
         'This was an amazing experience! The team was professional, and the service exceeded my expectations. I’ll definitely be coming back!',
-      Img: '/assets/kiritooo.jpg',
+      Img: '/assets/kiritooo.webp',
       date: '2/7/2024',
     },
     {
@@ -35,7 +35,7 @@ export class TestimonialsComponent {
       title: 'Thank You',
       comment:
         'The support staff were helpful but took a little while to respond. However, the issue was resolved, and I’m happy with the outcome.',
-      Img: '/assets/Hgirl1.jpg',
+      Img: '/assets/Hgirl1.webp',
       date: '7/10/2023',
     },
     {
@@ -53,7 +53,7 @@ export class TestimonialsComponent {
       title: 'Great Experience',
       comment:
         'Great experience overall! The website is easy to navigate, and I found exactly what I was looking for. Will recommend to friends.',
-      Img: '/assets/girl3.jpg',
+      Img: '/assets/girl3.webp',
       date: '3/5/2022',
     },
     {
@@ -62,7 +62,7 @@ export class TestimonialsComponent {
       title: 'Good Service',
       comment:
         'Good service, but the product I received wasn’t exactly as described. Still, the return process was smooth, and the team handled it well.',
-      Img: '/assets/boy1.png',
+      Img: '/assets/boy1.webp',
       date: '7/12/2023',
     },
   ];
