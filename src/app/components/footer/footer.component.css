@@ -9,7 +9,9 @@ h5 {
   margin-bottom: 30px;
   font-size: 1.5rem;
 }
-.columns p {
+.columns p,
+.columns a {
+  color: #773b31;
   font-size: 1rem;
 }
 .container .columns {
