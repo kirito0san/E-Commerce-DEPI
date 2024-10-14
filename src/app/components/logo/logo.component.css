@@ -1,3 +1,6 @@
 img {
-  aspect-ratio: 16 / 9;
+  width: 197px;
+  height: 127px;
+  max-width: 100%;
+  max-height: 100%;
 }
