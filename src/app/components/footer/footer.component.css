@@ -201,7 +201,7 @@ input::placeholder {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-h6 {
+.p-h6 {
   margin-bottom: 15px;
 }
 .social a:hover {
