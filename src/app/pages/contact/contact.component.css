@@ -154,6 +154,9 @@ p {
   .form input:first-child {
     margin-bottom: 1rem;
   }
+  .img {
+    aspect-ratio: 16 / 9;
+  }
 }
 
 .left,

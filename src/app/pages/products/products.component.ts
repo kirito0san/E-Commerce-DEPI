@@ -4,12 +4,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor and ngIf
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'src/app/service/message.service';
 import { filter } from 'rxjs';
+import { LogoComponent } from 'src/app/components/logo/logo.component';
 interface Product {
   id: number;
   name: string;
@@ -30,6 +31,7 @@ interface Product {
     MatIconModule,
     CommonModule,
     FormsModule,
+    LogoComponent,
   ],
   standalone: true,
 })

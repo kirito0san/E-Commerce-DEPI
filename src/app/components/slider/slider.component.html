@@ -3,6 +3,9 @@
   [interval]="3000"
   [pauseOnHover]="true"
   [pauseOnFocus]="true"
+  role="region"
+  aria-label="Image Carousel"
+  aria-live="polite"
 >
   <ng-template ngbSlide *ngFor="let chunk of imageChunks; let i = index">
     <div class="image-container">
@@ -10,6 +13,7 @@
         *ngFor="let image of chunk"
         class="image-wrapper"
         (click)="onClick(image.place)"
+        aria-live="polite"
       >
         <img [src]="image.src" [alt]="image.alt" class="slider-image" />
         <div class="image-caption">

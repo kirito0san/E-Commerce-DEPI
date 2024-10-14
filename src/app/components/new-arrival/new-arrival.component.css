@@ -163,7 +163,7 @@ p {
 .buy-now {
   background-color: #7a7560;
   color: white;
-  border: 1px solid #7a7560;
+  border: 1px solid white;
 }
 a:not(.buy-now) {
   color: white;

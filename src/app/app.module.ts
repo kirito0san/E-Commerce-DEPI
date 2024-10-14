@@ -30,6 +30,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EndMessageComponent } from './components/end-message/end-message.component';
+import { LogoComponent } from './components/logo/logo.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { EndMessageComponent } from './components/end-message/end-message.compon
     EndMessageComponent,
   ],
   imports: [
+    LogoComponent,
     SliderComponent,
     FavoritesComponent,
     HeaderComponent,
