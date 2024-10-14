@@ -29,6 +29,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EndMessageComponent } from './components/end-message/end-message.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CheckOutComponent,
     CheckoutOneComponent,
     CheckoutTwoComponent,
+    EndMessageComponent,
   ],
   imports: [
     SliderComponent,
@@ -65,7 +67,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     TestimonialsComponent,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,23 +1,22 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
-import { ToastrService } from 'ngx-toastr';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 
 @Component({
-  selector: 'app-checkout-two',
-  templateUrl: './checkout-two.component.html',
-  styleUrls: ['./checkout-two.component.css'],
+  selector: 'app-end-message',
+  templateUrl: './end-message.component.html',
+  styleUrls: ['./end-message.component.css'],
 })
-export class CheckoutTwoComponent {
+export class EndMessageComponent {
   userData: any = [];
   subtotal: number = 0;
   couponIsActive: boolean = false;
   BuyForm!: FormGroup;
-  constructor(
-    private user: AuthServiceService,
-    private showMessage: ToastrService
-  ) {
+
+  constructor(private user: AuthServiceService) {
+    this.BuyForm = this.user.BuyForm;
+    console.log(this.BuyForm.controls);
+
     const userId = Number(localStorage.getItem('user')) || 0;
     this.userData = this.user.getUserData(userId).subscribe((data) => {
       this.userData = data;
@@ -26,14 +25,5 @@ export class CheckoutTwoComponent {
       });
       this.couponIsActive = this.user.couponIsActive;
     });
-    this.BuyForm = this.user.BuyForm;
-  }
-  onSubmit() {
-    console.log(this.BuyForm.controls);
-    if (this.BuyForm.valid) {
-      this.user.isBuy = true;
-    } else {
-      this.showMessage.error('form is Invalid', 'Error');
-    }
   }
 }

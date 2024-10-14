@@ -130,7 +130,6 @@ p {
   top: 5px;
   font-size: 12px;
   color: #757575;
-
 }
 
 .comment textarea {
@@ -149,10 +148,10 @@ p {
 }
 
 @media (max-width: 444px) {
-  .form input{
+  .form input {
     width: 100%;
   }
-  .form input:first-child{
+  .form input:first-child {
     margin-bottom: 1rem;
   }
 }
@@ -163,7 +162,7 @@ p {
 }
 
 .left .form input:first-child {
-margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .left .form input {
@@ -203,7 +202,6 @@ margin-right: 1rem;
   justify-content: space-between;
 }
 
-.connect-with-us a{
+.connect-with-us a {
   color: inherit;
 }
-

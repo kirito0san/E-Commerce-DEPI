@@ -27,8 +27,6 @@ export class CartComponent {
     let userId = JSON.parse(localStorage.getItem('user')!);
     this.userData.getUserData(userId).subscribe((data) => {
       this.userCart = data.cart || [];
-      console.log(data.cart);
-
       this.getTotal();
     });
     this.userId = Number(localStorage.getItem('user')) || 0;
@@ -36,7 +34,10 @@ export class CartComponent {
   activeCoupon(Coupon: any) {
     this.couponIsActive = this.coupon.some((e) => e == Coupon.value);
     if (this.couponIsActive) {
+      this.userData.couponIsActive = true;
       this.showMessage.showSuccess('Shipping On Us 😉');
+    } else {
+      this.userData.couponIsActive = false;
     }
   }
   getTotal() {

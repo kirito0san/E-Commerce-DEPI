@@ -42,7 +42,6 @@ a {
   padding: 15px;
   border: 1px solid #ccc;
   width: 470px;
-  height: 100vh;
 }
 
 .total-item {
@@ -212,6 +211,5 @@ nav li {
   }
   .box input {
     width: 50px;
-    height: 40px;
   }
 }

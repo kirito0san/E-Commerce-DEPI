@@ -25,7 +25,7 @@ export class HeaderComponent implements DoCheck {
   searchTerm: string = ''; // Holds the user's search input
   filteredProducts: any[] = []; // Holds the search results
   isDropdownVisible: boolean = false;
-  isDesktop = window.innerWidth >= 768;
+  isDesktop = window.innerWidth >= 769;
   logIn: boolean = false;
   // Reference to the input and container elements
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
@@ -83,7 +83,7 @@ export class HeaderComponent implements DoCheck {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    this.isDesktop = window.innerWidth >= 768; // Adjust based on your breakpoint
+    this.isDesktop = window.innerWidth >= 769; // Adjust based on your breakpoint
     if (this.isDesktop) {
       this.isDropdownVisible = false; // Close the menu when switching to desktop
     }
