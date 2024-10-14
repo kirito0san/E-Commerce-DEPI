@@ -31,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EndMessageComponent } from './components/end-message/end-message.component';
 import { LogoComponent } from './components/logo/logo.component';
+import { PersonalizedGiftComponent } from './components/personalized-gift/personalized-gift.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { LogoComponent } from './components/logo/logo.component';
     CheckoutOneComponent,
     CheckoutTwoComponent,
     EndMessageComponent,
+    PersonalizedGiftComponent,
   ],
   imports: [
     LogoComponent,

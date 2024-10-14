@@ -1,5 +1,5 @@
 .container {
-  background: rgb(241, 172, 190);
+  background: #ead3c8;
   color: rgba(254, 247, 249, 1);
   border-radius: 8px;
   max-width: 100% !important;
@@ -125,7 +125,7 @@ h5 {
 .input {
   display: flex;
   border: 1px solid #0d0406;
-  background-color: #f1acbe;
+
   border-radius: 5px;
   height: 40px;
   align-items: center;
@@ -144,7 +144,7 @@ h5 {
   height: 100%;
   padding-left: 5px;
   color: #0d0406;
-  background-color: #c28192;
+  background-color: transparent;
   font-size: 1rem;
 }
 
@@ -161,7 +161,7 @@ h5 {
   -o-transition: 0.3s;
 }
 .input svg:hover {
-  background-color: #f43165;
+  background-color: #f3cbb9;
 }
 input::placeholder {
   color: #0d0406;
