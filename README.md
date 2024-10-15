@@ -1,5 +1,14 @@
 # ECommerceDEPI
 
+## Team Members
+
+- **Ahmed Syed** – Team Leader, Frontend Developer (Angular 16)
+- **Liza Atef** – Frontend Developer
+- **Linda Atef** – Frontend Developer
+- **Fady Hany** – Frontend Developer
+- **Anfal** – Frontend Developer
+- **Hagar** – Frontend Developer
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
 
 ## Development server

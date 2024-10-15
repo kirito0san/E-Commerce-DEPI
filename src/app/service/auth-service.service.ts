@@ -10,7 +10,7 @@ import { Observable, tap } from 'rxjs';
 export class AuthServiceService {
   public isBuy: boolean = false;
   public BuyForm!: FormGroup;
-  private apiUrl = 'https://retoolapi.dev/AnjUau/data'; // Replace with your API URL
+  private apiUrl = 'https://retoolapi.dev/IeOon5/data'; // Replace with your API URL
   public favorites = [];
   public cart = [];
   public logIn: boolean = localStorage.getItem('user') ? true : false; // Set to true if user exists, false otherwise
