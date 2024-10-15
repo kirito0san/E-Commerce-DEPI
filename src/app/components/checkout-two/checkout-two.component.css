@@ -76,8 +76,35 @@
   gap: 1px;
 }
 .logos {
-  height: 28px;
+  /* height: 28px; */
+  height: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  overflow: hidden;
 }
+
+.logos img{
+  width: 3rem;
+}
+
+@media screen and (max-width: 864px) and (min-width: 768px) {
+  .logos{
+    gap: 0;
+}
+  .logos img{
+    width: 2.5rem;
+  }
+}
+
+@media(max-width:420px){
+  .logos{
+    gap: 0;
+}
+  .logos img{
+    width: 2rem;
+  }
+}
+
 .options {
   display: flex;
   flex-direction: column;
@@ -117,3 +144,6 @@ button:hover {
   color: white;
   background-color: #f14673 !important;
 }
+
+
+
