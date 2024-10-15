@@ -65,7 +65,7 @@ li:not(.sreach):hover {
   background-color: #f5f5f5;
   padding: 10px 10px;
   border-radius: 6px;
-  color: #4ab0ad;
+  color: #0f7c79;
 }
 
 .active2 {
@@ -75,7 +75,7 @@ li:not(.sreach):hover {
 }
 
 .active2 svg {
-  fill: #4ab0ad;
+  fill: #0f7c79;
 }
 
 @media (max-width: 768px) {
@@ -103,8 +103,8 @@ li:not(.sreach):hover {
   }
 
   .active1 {
-    background-color: #4ab0ad;
-    color: antiquewhite;
+    background-color: #0f7c79;
+    color: white;
   }
 
   .header-left-large li:hover {
@@ -138,7 +138,7 @@ li:not(.sreach):hover {
   top: 48px;
   right: 0;
   padding: 5px;
-  border: 1px solid #4ab0ad;
+  border: 1px solid #0f7c79;
   border-radius: 4px;
   outline: none;
   transition: all 0.3s ease;
