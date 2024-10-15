@@ -1,14 +1,25 @@
 .container div > * {
   width: 47%;
 }
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
   .container {
     flex-direction: column;
   }
   .container div > * {
     width: 100%;
   }
+  .checks{
+    flex-wrap: wrap;
+  }
 }
+
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 55rem;
+    }
+}
+
 .end-message {
   background-color: white;
   position: fixed;

@@ -3,9 +3,16 @@ select{
   border: none;
   background-color: #F3F2F2;
 
-  width: 75%;
+  width: 20rem;
   height: 33px;
   margin-bottom: 15px;
+}
+
+@media(max-width:475px){
+  input,
+  select{
+    width: 75%;
+}
 }
 
 .form-group label{

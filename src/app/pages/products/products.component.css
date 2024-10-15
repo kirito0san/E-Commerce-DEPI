@@ -1,7 +1,7 @@
 .example-card {
   padding-top: 10px;
   width: 350px;
-  min-height: 533px;
+  /* min-height: 533px; */
   overflow: hidden;
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -31,7 +31,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
+  /* height: 300px; */
+  height: 240px;
 }
 .input-search:focus-visible {
   border: 1px solid #4ab0ad;
