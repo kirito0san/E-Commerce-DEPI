@@ -43,15 +43,16 @@ export class ProductComponent {
   ) {
     const productId = this.route.snapshot.paramMap.get('id');
     this.userId = Number(localStorage.getItem('user')) || 0;
-    this.userData.getUserData(this.userId).subscribe((data) => {
-      this.isFavorites =
-        data.favorites?.some((p: any) => p.id == productId) || false;
-      this.favorites = data.favorites || [];
-      this.userCart = data.cart || [];
-      this.productInUserCart =
-        data.cart?.find((p: any) => p.id == productId) || [];
-      console.log(this.userCart);
-    });
+    if (this.userData.logIn) {
+      this.userData.getUserData(this.userId).subscribe((data) => {
+        this.isFavorites =
+          data.favorites?.some((p: any) => p.id == productId) || false;
+        this.favorites = data.favorites || [];
+        this.userCart = data.cart || [];
+        this.productInUserCart =
+          data.cart?.find((p: any) => p.id == productId) || [];
+      });
+    }
     this.dataService.getAllData().subscribe((data) => {
       this.cart = data || [];
       this.productDetails = data.find((p: any) => p.id == productId);
@@ -119,7 +120,6 @@ export class ProductComponent {
     const isInCart = this.userCart?.some((p: any) => p.id == item.id);
     const itemIndex = this.userCart?.findIndex((p: any) => p.id == item.id);
     this.productInUserCart = this.productDetails;
-    // console.log(itemIndex);
     if (!isInCart) {
       this.productInUserCart.quantity =
         (this.productInUserCart.quantity || 1) + 1;

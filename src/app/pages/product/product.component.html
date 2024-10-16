@@ -1,10 +1,14 @@
 <div class="parent d-flex gap-5 justify-content-evenly">
   <div class="photo col-6">
-    <img [src]="productDetails?.image" alt="{{ productDetails?.title }}" />
+    <img
+      *ngIf="productDetails"
+      [src]="productDetails.image"
+      alt="{{ productDetails.title }}"
+    />
   </div>
-  <div class="detailes">
+  <div *ngIf="productDetails" class="detailes">
     <div class="data">
-      <h2>{{ productDetails?.title }}</h2>
+      <h2>{{ productDetails.title }}</h2>
       <div class="star-parent d-flex gap-5">
         <div class="stars d-flex">
           <div>
@@ -66,13 +70,10 @@
             </span>
           </div>
           <p class="rating-count">
-            ({{ productDetails?.rating?.count }}) Reviews
+            ({{ productDetails.rating?.count }}) Reviews
           </p>
         </div>
-        <p
-          *ngIf="productDetails?.rating?.count! > 0"
-          class="stock availability"
-        >
+        <p *ngIf="productDetails.rating?.count! > 0" class="stock availability">
           In Stock
         </p>
         <p
@@ -88,23 +89,11 @@
           Last One
         </p>
       </div>
-      <h4>{{ productDetails?.price | currency }}</h4>
-      <p class="desc">{{ productDetails?.description }}</p>
+      <h4>{{ productDetails.price | currency }}</h4>
+      <p class="desc">{{ productDetails.description }}</p>
     </div>
     <hr />
     <div class="choosing">
-      <div class="size d-flex gap-4 mb-4">
-        <label>Size:</label>
-        <div class="sizes d-flex gap-3">
-          <button
-            *ngFor="let size of sizes"
-            [ngClass]="{ selected: selectedSize === size }"
-            (click)="selectSize(size)"
-          >
-            {{ size }}
-          </button>
-        </div>
-      </div>
       <div class="quantity d-flex gap-3">
         <div class="counter">
           <button class="counter-btn" (click)="decrease()">-</button>

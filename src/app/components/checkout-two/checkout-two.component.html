@@ -7,9 +7,13 @@
           <img [src]="item.image" alt="LCD Monitor" />
           <span>{{ item.title }}</span>
         </div>
-        <span>{{ item.quantity }}</span>
-        <span>{{ item.price | currency }}</span>
-        <span>{{ item.quantity * item.price | currency }}</span>
+        <div class="spans">
+          <span class="bordered-div">{{ item.quantity }}</span>
+          <span class="bordered-div">{{ item.price | currency }}</span>
+          <span class="bordered-div">{{
+            item.quantity * item.price | currency
+          }}</span>
+        </div>
       </div>
     </div>
     <!-- cart -->

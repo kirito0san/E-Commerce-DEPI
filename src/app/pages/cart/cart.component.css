@@ -36,7 +36,7 @@ a {
   gap: 15px;
 }
 
-.coupon input{
+.coupon input {
   flex: 0;
 }
 
@@ -67,18 +67,9 @@ a {
   margin: 10px;
 }
 @media (max-width: 1000px) {
-  /* .container {
-    justify-content: center;
-  } */
   .coupon {
     width: 100%;
   }
-  /* .cart {
-    width: 100%;
-  } */
-  /* .cart-total {
-    width: 100%;
-  } */
   .coupon button {
     font-size: 0.9rem;
   }
@@ -134,7 +125,7 @@ a {
   padding: 10px 0;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.08);
   display: flex;
-
+  position: relative;
   align-items: center;
   font-weight: 500;
   height: 32%;
@@ -210,13 +201,13 @@ nav li {
 }
 @media (max-width: 768px) {
   .box-2 a,
-  .coupon button{
+  .coupon button {
     width: 8rem;
   }
-  .box-3 input{
+  .box-3 input {
     width: 3rem;
   }
-  .cart-total{
+  .cart-total {
     width: 30rem;
   }
 }
@@ -225,7 +216,7 @@ nav li {
   .cart {
     width: 100%;
   }
-  .cart-total{
+  .cart-total {
     width: 100%;
   }
 }
@@ -238,4 +229,30 @@ nav li {
   .box input {
     width: 50px;
   }
+}
+.delete {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #4ab0ad !important;
+  top: 0;
+  right: 0;
+  position: absolute;
+  padding: 0 !important;
+  min-width: 40px;
+  max-width: 40px;
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  -ms-border-radius: 0px !important;
+  -o-border-radius: 0px !important;
+  border-bottom-left-radius: 8px !important;
+}
+.delete:hover {
+  background-color: #309995 !important;
+  box-shadow: -2px 4px 8px 1px rgba(0, 0, 0, 0.542);
+}
+.delete svg {
+  fill: white;
 }
