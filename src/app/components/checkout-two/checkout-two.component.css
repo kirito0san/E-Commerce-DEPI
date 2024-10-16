@@ -22,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
   margin-bottom: 20px;
   background-color: #ffffff;
   padding: 10px;
@@ -42,27 +43,69 @@
     text-align: center;
     flex-direction: column;
   }
-  .product span {
-    text-align: center;
-  }
 }
 .product-info img {
   width: 50px;
   height: 50px;
 }
+.spans {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 .product span {
-  width: 90px;
+  width: 67px;
+  max-width: 100%;
+  text-align: center;
 }
 .parent-product {
   max-height: 280px;
   overflow: auto;
+}
+.bordered-div {
+  position: relative;
+  border: 2px solid #7ab878;
+  border-radius: 8px;
+}
+
+.bordered-div:nth-child(1):before {
+  content: "Quantity";
+  position: absolute;
+  color: #287d26;
+  top: -15px;
+  left: 6px;
+  width: fit-content;
+  font-size: 0.8rem;
+  background-color: white;
+}
+.bordered-div:nth-child(2):before {
+  content: "price";
+  position: absolute;
+  color: #287d26;
+  top: -15px;
+  left: 6px;
+  width: fit-content;
+  font-size: 0.8rem;
+  background-color: white;
+}
+.bordered-div:nth-child(3):before {
+  content: "subtotal";
+  position: absolute;
+  color: #287d26;
+  top: -15px;
+  left: 6px;
+  width: fit-content;
+  font-size: 0.8rem;
+  background-color: white;
 }
 /* cart */
 .total-item {
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
-  gap: 160px;
+  gap: 10px;
 }
 .cart {
   padding-top: 10px;
@@ -83,24 +126,35 @@
   overflow: hidden;
 }
 
-.logos img{
+.logos img {
   width: 3rem;
 }
 
 @media screen and (max-width: 864px) and (min-width: 768px) {
-  .logos{
+  .logos {
     gap: 0;
-}
-  .logos img{
+  }
+  .logos img {
     width: 2.5rem;
   }
 }
 
-@media(max-width:420px){
-  .logos{
+@media (max-width: 420px) {
+  .product {
+    align-items: stretch;
+  }
+  .spans {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .logos {
     gap: 0;
-}
-  .logos img{
+  }
+  .logos img {
     width: 2rem;
   }
 }
@@ -144,6 +198,3 @@ button:hover {
   color: white;
   background-color: #f14673 !important;
 }
-
-
-

@@ -51,13 +51,15 @@ export class ProductsComponent implements OnInit, DoCheck {
   ) {
     this.category = this.authService.category;
     const user = JSON.parse(localStorage.getItem('user')!);
-    this.authService.getUserData(user).subscribe((data) => {
-      this.userData = data || [];
-      if (this.userData) {
-        this.favorites = this.userData.favorites || [];
-        this.cart = this.userData.cart || [];
-      }
-    });
+    if (this.authService.logIn) {
+      this.authService.getUserData(user).subscribe((data) => {
+        this.userData = data || [];
+        if (this.userData) {
+          this.favorites = this.userData.favorites || [];
+          this.cart = this.userData.cart || [];
+        }
+      });
+    }
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
