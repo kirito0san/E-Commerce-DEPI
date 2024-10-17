@@ -235,7 +235,7 @@ nav li {
   height: 40px;
   border-radius: 50%;
   border: none;
-  background-color: #4ab0ad !important;
+  background-color: #ebf3f8 !important;
   top: 0;
   right: 0;
   position: absolute;
@@ -250,9 +250,16 @@ nav li {
   border-bottom-left-radius: 8px !important;
 }
 .delete:hover {
-  background-color: #309995 !important;
+  background-color: #a8adb0 !important;
   box-shadow: -2px 4px 8px 1px rgba(0, 0, 0, 0.542);
 }
 .delete svg {
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+.delete:hover svg {
   fill: white;
 }

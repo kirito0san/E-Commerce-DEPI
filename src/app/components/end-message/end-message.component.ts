@@ -14,9 +14,7 @@ export class EndMessageComponent {
   BuyForm!: FormGroup;
 
   constructor(private user: AuthServiceService) {
-    this.BuyForm = this.user.BuyForm;
-    console.log(this.BuyForm.controls);
-
+    this.BuyForm = this.user.BuyForm || new FormGroup({});
     const userId = Number(localStorage.getItem('user')) || 0;
     this.userData = this.user.getUserData(userId).subscribe((data) => {
       this.userData = data;

@@ -16,19 +16,55 @@ import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'products', component: ProductsComponent },
-  { path: 'cart', component: CartComponent, canActivate: [authGuard] },
-  { path: 'Testimonials', component: TestimonialsComponent },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./pages/signup/signup.component').then((m) => {
+        return m.SignupComponent;
+      }),
+  },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login.component').then((m) => {
+        return m.LoginComponent;
+      }),
+  },
+  {
+    path: 'products',
+    loadComponent: () =>
+      import('./pages/products/products.component').then((m) => {
+        return m.ProductsComponent;
+      }),
+  },
+  {
+    path: 'Testimonials',
+    loadComponent: () =>
+      import('./pages/testimonials/testimonials.component').then((m) => {
+        return m.TestimonialsComponent;
+      }),
+  },
+  {
+    path: 'cart',
+    loadComponent: () =>
+      import('./pages/cart/cart.component').then((m) => {
+        return m.CartComponent;
+      }),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'Favorites',
+    loadComponent: () =>
+      import('./pages/favorites/favorites.component').then((m) => {
+        return m.FavoritesComponent;
+      }),
+    canActivate: [authGuard],
+  },
+
   { path: 'About', component: AboutComponent },
   { path: 'Contact', component: ContactComponent },
   { path: 'product/:id', component: ProductComponent },
-  {
-    path: 'Favorites',
-    component: FavoritesComponent,
-    canActivate: [authGuard],
-  },
+
   { path: 'CheckOut', component: CheckOutComponent, canActivate: [authGuard] },
   { path: '**', component: ErrorComponent },
 ];
