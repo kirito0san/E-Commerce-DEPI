@@ -20,7 +20,9 @@ export class AuthServiceService {
   constructor(private router: Router, private http: HttpClient) {
     this.logIn = localStorage.getItem('user') ? true : false;
   }
-
+  public getApiUrl(): string {
+    return this.apiUrl;
+  }
   logInUser() {
     this.logIn = true;
   }

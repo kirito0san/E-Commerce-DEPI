@@ -16,7 +16,7 @@ export class CheckoutTwoComponent {
   BuyForm!: FormGroup;
   constructor(
     private user: AuthServiceService,
-    private showMessage: ToastrService
+    public showMessage: ToastrService
   ) {
     const userId = Number(localStorage.getItem('user')) || 0;
     this.userData = this.user.getUserData(userId).subscribe((data) => {
