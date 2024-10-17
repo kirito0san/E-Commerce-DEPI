@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -14,7 +14,7 @@ import { MessageService } from 'src/app/service/message.service';
   imports: [MatCardModule, MatButtonModule, MatIconModule, CommonModule],
   standalone: true,
 })
-export class FavoritesComponent {
+export class FavoritesComponent implements OnInit{
   favorites!: any[];
   cart!: any[];
 
@@ -23,7 +23,15 @@ export class FavoritesComponent {
     private showMessage: MessageService,
     private router: Router
   ) {
-    let userId = JSON.parse(localStorage.getItem('user')!);
+    // let userId = JSON.parse(localStorage.getItem('user')!);
+    // this.userData.getUserData(userId).subscribe((data) => {
+    //   this.favorites = data.favorites;
+    //   this.cart = data.cart || [];
+    // });
+  }
+
+  ngOnInit(): void {
+    const userId = JSON.parse(localStorage.getItem('user')!);
     this.userData.getUserData(userId).subscribe((data) => {
       this.favorites = data.favorites;
       this.cart = data.cart || [];
