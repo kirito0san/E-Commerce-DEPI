@@ -59,9 +59,6 @@ export class CheckoutTwoComponent {
   }
 
   onSubmit() {
-    console.log(this.form.BuyForm.valid);
-    this.form.isBuy = true;
-
     if (this.form.BuyForm.valid) {
       this.form.isBuy = true;
     } else {

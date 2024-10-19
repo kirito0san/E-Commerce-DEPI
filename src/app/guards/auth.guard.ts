@@ -1,11 +1,10 @@
 import { inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { firstValueFrom } from 'rxjs';
 
 export const authGuard: CanActivateFn = async (route, state) => {
-  const router = inject(Router);
   const toster = inject(ToastrService);
   const afAuth = inject(AngularFireAuth);
   const user = await firstValueFrom(afAuth.authState);

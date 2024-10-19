@@ -1,10 +1,10 @@
-import { Component, DoCheck, OnInit, SimpleChanges } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { DataService } from 'src/app/service/data.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor and ngIf
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { MessageService } from 'src/app/service/message.service';
 import { filter } from 'rxjs';
@@ -50,7 +50,7 @@ export class ProductsComponent implements OnInit, DoCheck {
     private showMessage: MessageService,
     private getCategory: AuthServiceService
   ) {
-    this.category = 'all';
+    this.category = this.getCategory.category;
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
