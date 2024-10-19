@@ -167,7 +167,6 @@ export class ProductComponent {
               quantity: this.quantity,
               ...this.productDetails,
             };
-
             this.cartService
               .addToCart(cartItem)
               .pipe(first())
@@ -176,6 +175,8 @@ export class ProductComponent {
                   this.showMessage.showSuccess('Product added to cart');
                 },
                 (error) => {
+                  console.log(error);
+
                   this.showMessage.showError(
                     'Please log in first to add to cart'
                   );

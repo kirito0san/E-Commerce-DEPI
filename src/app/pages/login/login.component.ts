@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
     try {
       await this.authService.login(email, password);
       this.showMessage.showSuccess('Welcome Back');
+
       this.router.navigate(['/']);
     } catch (error: any) {
       this.showMessage.showError('Login failed. Please try again.');

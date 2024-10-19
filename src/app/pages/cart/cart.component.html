@@ -81,7 +81,9 @@
               | currency
           }}</span>
         </div>
-        <a routerLink="/CheckOut" class="mt-4">Proceed to checkout</a>
+        <a *ngIf="totalCartCost !== 0" routerLink="/CheckOut" class="mt-4"
+          >Proceed to checkout</a
+        >
       </div>
     </div>
   </div>
