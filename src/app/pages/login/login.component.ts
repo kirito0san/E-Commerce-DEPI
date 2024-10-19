@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { AuthService } from 'src/app/service/auth.service';
 import { MessageService } from 'src/app/service/message.service';
 
 @Component({
@@ -19,17 +19,12 @@ import { MessageService } from 'src/app/service/message.service';
   imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterLink],
 })
 export class LoginComponent implements OnInit {
-  email: string = '';
-  password: string = '';
-  usersData: any = null;
-  user: any = null;
   signupForm!: FormGroup;
-  login: boolean = false;
   constructor(
     private fb: FormBuilder,
-    private authService: AuthServiceService,
     private router: Router,
-    private showMessage: MessageService
+    private showMessage: MessageService,
+    private authService: AuthService
   ) {}
   ngOnInit() {
     this.signupForm = this.fb.group({
@@ -37,28 +32,15 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-  onSubmit() {
+  async onSubmit() {
     const email = this.signupForm.get('email')?.value;
     const password = this.signupForm.get('password')?.value;
-    this.authService.login().subscribe(
-      (response) => {
-        this.user = response.find(
-          (user: any) => user.email === email && user.password === password
-        );
-        if (this.user) {
-          this.authService.logInUser();
-          this.authService.favorites = this.user.favorites || [];
-          this.authService.cart = this.user.cart || [];
-          localStorage.setItem('user', JSON.stringify(this.user.id));
-          this.showMessage.showSuccess('Welcome Back');
-          this.router.navigate(['/']);
-        } else {
-          this.showMessage.showError('User Doesn`t Exist');
-        }
-      },
-      (error) => {
-        this.showMessage.showError('server down');
-      }
-    );
+    try {
+      await this.authService.login(email, password);
+      this.showMessage.showSuccess('Welcome Back');
+      this.router.navigate(['/']);
+    } catch (error: any) {
+      this.showMessage.showError('Login failed. Please try again.');
+    }
   }
 }

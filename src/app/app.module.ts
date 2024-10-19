@@ -32,6 +32,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EndMessageComponent } from './components/end-message/end-message.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { PersonalizedGiftComponent } from './components/personalized-gift/personalized-gift.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth'; // Updated import
+import { firebaseConfig } from '../environments/environment'; // Adjust the path if necessary
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { PersonalizedGiftComponent } from './components/personalized-gift/person
     PersonalizedGiftComponent,
   ],
   imports: [
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    BrowserAnimationsModule,
     LogoComponent,
     SliderComponent,
     FavoritesComponent,

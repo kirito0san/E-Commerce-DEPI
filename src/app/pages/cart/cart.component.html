@@ -52,7 +52,12 @@
 
   <div class="container">
     <div class="coupon">
-      <input type="text" #Coupon placeholder="Coupon Code" />
+      <input
+        type="text"
+        #Coupon
+        [value]="getAppliedCoupon"
+        placeholder="Coupon Code"
+      />
       <button (click)="activeCoupon(Coupon)">Apply Coupon</button>
     </div>
     <div class="cart">

@@ -11,7 +11,7 @@ export class CheckoutOneComponent {
   form: FormGroup;
   cities = ['Cairo', 'Giza', 'Beni-suif', 'Alexandria', 'Luxor', 'Aswan'];
   constructor(private userData: AuthServiceService) {
-    this.userData.BuyForm = this.form = new FormGroup({
+    this.form = new FormGroup({
       name: new FormControl('', [
         Validators.required,
         Validators.pattern('[A-Za-z ]+'), // Only letters and spaces
@@ -29,5 +29,6 @@ export class CheckoutOneComponent {
       ]),
       email: new FormControl('', [Validators.required, Validators.email]),
     });
+    this.userData.BuyForm = this.form;
   }
 }

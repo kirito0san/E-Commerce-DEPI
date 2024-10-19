@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor and ngIf
 import { Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MessageService } from 'src/app/service/message.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-favorites',
@@ -14,46 +14,70 @@ import { MessageService } from 'src/app/service/message.service';
   imports: [MatCardModule, MatButtonModule, MatIconModule, CommonModule],
   standalone: true,
 })
-export class FavoritesComponent implements OnInit{
-  favorites!: any[];
-  cart!: any[];
-
+export class FavoritesComponent implements OnInit {
+  favorites: any[] = [];
+  cart: any[] = [];
   constructor(
-    private userData: AuthServiceService,
+    // private userData: AuthServiceService,
     private showMessage: MessageService,
-    private router: Router
-  ) {
-    // let userId = JSON.parse(localStorage.getItem('user')!);
-    // this.userData.getUserData(userId).subscribe((data) => {
-    //   this.favorites = data.favorites;
-    //   this.cart = data.cart || [];
-    // });
-  }
+    private router: Router,
+    private authService: AuthService
+  ) {}
+  async ngOnInit() {
+    const user = await this.authService.afAuth.currentUser; // Get the current user
 
-  ngOnInit(): void {
-    const userId = JSON.parse(localStorage.getItem('user')!);
-    this.userData.getUserData(userId).subscribe((data) => {
-      this.favorites = data.favorites;
-      this.cart = data.cart || [];
-    });
-  }
-  AddToCart(item: any) {
-    const existingCart = this.cart?.find((cart) => cart.id === item.id);
-    if (!existingCart) {
-      item.quantity = 1;
-      this.cart?.push({ ...item });
-      this.showMessage.showSuccess('Item Added To Cart');
-    } else {
-      this.showMessage.showInfo('Item Already In Cart');
-      existingCart.quantity = existingCart.quantity || 1;
+    if (user) {
+      const uid = user.uid; // Get the UID from the current user
+      const cart = await this.authService.getUserCart(uid); // Fetch the user's cart
+      const favorites = await this.authService.getUserFavorites(uid); // Fetch the user's favorites
+      if (cart) {
+        this.cart = cart.cart || []; // Ensure items is an array
+      } else {
+        this.cart = []; // Default to empty array if cart is null
+      }
+      if (favorites) {
+        this.favorites = favorites.favorites || []; // Ensure items is an array
+      } else {
+        this.favorites = []; // Default to empty array if favorites is null
+      }
     }
-    const userId = JSON.parse(localStorage.getItem('user')!);
-    this.userData.saveCart(userId, this.cart).subscribe();
   }
-  deleteFavorites(id: any) {
-    const userId = JSON.parse(localStorage.getItem('user')!);
-    this.favorites = this.favorites.filter((item: any) => item.id !== id);
-    this.userData.deleteFavorites(userId, this.favorites).subscribe();
+  async AddToCart(item: any) {
+    const user = await this.authService.afAuth.currentUser;
+    item.quantity = 1; // Get the current user
+    console.log(user);
+    if (
+      !item ||
+      !item.id ||
+      !item.title ||
+      item.price === undefined ||
+      item.quantity === undefined
+    ) {
+      console.error('Product data is incomplete:', item);
+      return; // Exit the function if the product is incomplete
+    }
+    if (user) {
+      const uid = user.uid; // Get the UID from the current user
+      try {
+        await this.authService.addToCart(uid, item); // Call the method to add to cart
+        console.log('Added to cart:', item);
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+      }
+    } else {
+      this.showMessage.showError('You Have To Login');
+      console.warn('User not logged in');
+    }
+  }
+  async deleteFavorites(id: any) {
+    const user = await this.authService.afAuth.currentUser;
+    if (user) {
+      try {
+        await this.authService.removeFromFavorites(user.uid, id);
+        // Remove the item from the local 'favorites' array to update the UI instantly
+        this.favorites = this.favorites.filter((item: any) => item.id !== id);
+      } catch (error) {}
+    }
   }
 
   goToProductDetails(productId: number): void {

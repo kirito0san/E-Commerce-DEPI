@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { AuthService } from 'src/app/service/auth.service';
 import { MessageService } from 'src/app/service/message.service';
 @Component({
   selector: 'app-signup',
@@ -19,13 +19,11 @@ import { MessageService } from 'src/app/service/message.service';
 })
 export class SignupComponent implements OnInit {
   signupForm!: FormGroup;
-  allEmail: any[] = [];
-
   constructor(
     private fb: FormBuilder,
-    private authService: AuthServiceService,
     private router: Router,
-    private showMessage: MessageService
+    private showMessage: MessageService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -42,29 +40,18 @@ export class SignupComponent implements OnInit {
         ],
       ],
     });
-    this.authService.getAllUser().subscribe((data) => {
-      this.allEmail = data;
-    });
   }
-  onSubmit() {
+  async onSubmit() {
     const name = this.signupForm.get('name')?.value;
     const email = this.signupForm.get('email')?.value;
     const password = this.signupForm.get('password')?.value;
-    const phoneNumber = this.signupForm.get('number')?.value;
-    if (!this.allEmail.some((e) => e.email == email)) {
-      this.authService
-        .register({ name, email, password, phoneNumber })
-        .subscribe(
-          (response) => {
-            this.showMessage.showSuccess('Registration successful');
-            this.router.navigate(['/login']);
-          },
-          (error) => {
-            this.showMessage.showError('Registration failed');
-          }
-        );
-    } else {
-      this.showMessage.showError('Registration failed ,Email already exists');
+    const phone = this.signupForm.get('number')?.value;
+    try {
+      await this.authService.register(email, password, { name, phone });
+      this.showMessage.showSuccess('Registration successful!');
+      this.router.navigate(['/login']);
+    } catch (error) {
+      this.showMessage.showError('Your Email Is Already In Our Base');
     }
   }
 }

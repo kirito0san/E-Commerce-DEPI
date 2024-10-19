@@ -1,22 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { AuthService } from 'src/app/service/auth.service';
+import { CartService } from 'src/app/service/cart-service.service';
 import { DataService } from 'src/app/service/data.service';
 import { MessageService } from 'src/app/service/message.service';
+import { first } from 'rxjs/operators';
+import { FirebaseAppModule } from '@angular/fire/app';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore'; // Import Firestore
+import firebase from 'firebase/compat/app'; // Import firebase for compatibility
+
 interface Product {
-  id: number | null | undefined;
-  title: string | null | undefined;
-  description: string | null | undefined;
-  price: number | null | undefined;
-  image: string | null;
-  rating:
+  id?: number | null | undefined;
+  title?: string | null | undefined;
+  description?: string | null | undefined;
+  price?: number | null | undefined;
+  image?: string | null;
+  rating?:
     | {
-        rate: number | null | undefined;
-        count: number | null | undefined;
+        rate?: number | null | undefined;
+        count?: number | null | undefined;
       }
     | null
     | undefined;
-  quantity: any;
+  quantity?: any;
 }
 @Component({
   selector: 'app-product',
@@ -25,38 +33,95 @@ interface Product {
 })
 export class ProductComponent {
   productDetails!: Product;
-  sizes: string[] = ['XS', 'S', 'M', 'L', 'XL'];
-  selectedSize: string = '';
+  currentUserId: string | null = null; // Store the current user's ID
+
   isFavorites: boolean = false;
   cart!: any[];
   userCart!: any[];
   userId = 0;
-  existingCart: any;
-  favorites: any[] = [];
-  productInUserCart: any = [];
 
+  favorites: any[] = [];
+
+  quantity: number = 1;
   constructor(
-    private userData: AuthServiceService,
+    // private userData: AuthServiceService,
+    private firestore: AngularFirestore,
+    private cartService: CartService,
     private dataService: DataService,
     private route: ActivatedRoute,
-    private showMessage: MessageService
+    private showMessage: MessageService,
+    private afAuth: AngularFireAuth
   ) {
+    this.checkIfFavorite(); // Check if the product is in favorites when the page loads
     const productId = this.route.snapshot.paramMap.get('id');
-    this.userId = Number(localStorage.getItem('user')) || 0;
-    if (this.userData.logIn) {
-      this.userData.getUserData(this.userId).subscribe((data) => {
-        this.isFavorites =
-          data.favorites?.some((p: any) => p.id == productId) || false;
-        this.favorites = data.favorites || [];
-        this.userCart = data.cart || [];
-        this.productInUserCart =
-          data.cart?.find((p: any) => p.id == productId) || [];
-      });
-    }
     this.dataService.getAllData().subscribe((data) => {
       this.cart = data || [];
       this.productDetails = data.find((p: any) => p.id == productId);
     });
+  }
+  async checkIfFavorite() {
+    const user = await this.afAuth.currentUser;
+    if (user) {
+      this.currentUserId = user.uid;
+      this.firestore
+        .collection('favorites')
+        .doc(user.uid)
+        .valueChanges()
+        .subscribe((favoritesData: any) => {
+          if (favoritesData && favoritesData.favorites) {
+            // Check if the product is already in the user's favorites
+            this.isFavorites = favoritesData.favorites.some(
+              (item: any) => item.id === this.productDetails.id
+            );
+          }
+        });
+    }
+  }
+
+  addToFavorites() {
+    if (this.currentUserId) {
+      const favoriteItem = {
+        id: this.productDetails.id,
+        ...this.productDetails,
+      };
+
+      // Add the product to the favorites in Firebase
+      this.firestore
+        .collection('favorites')
+        .doc(this.currentUserId)
+        .update({
+          favorites: firebase.firestore.FieldValue.arrayUnion(favoriteItem),
+        })
+        .then(() => {
+          this.isFavorites = true; // Set the state to true
+          this.showMessage.showSuccess('Product added to favorites');
+        })
+        .catch((error) => {
+          console.error('Error adding to favorites: ', error);
+        });
+    }
+  }
+  removeFromFavorites() {
+    if (this.currentUserId) {
+      const favoriteItem = {
+        id: this.productDetails.id,
+        ...this.productDetails,
+      };
+      // Remove the product from the favorites in Firebase
+      this.firestore
+        .collection('favorites')
+        .doc(this.currentUserId)
+        .update({
+          favorites: firebase.firestore.FieldValue.arrayRemove(favoriteItem),
+        })
+        .then(() => {
+          this.isFavorites = false; // Set the state to false
+          this.showMessage.showInfo('Item removed from favorites');
+        })
+        .catch((error) => {
+          console.error('Error removing from favorites: ', error);
+        });
+    }
   }
   // Handiling Rating Stars
   getFullStars(rate: number) {
@@ -72,81 +137,115 @@ export class ProductComponent {
   }
 
   // Start Counter
+  // async buyNow() {
+  //   const user = await this.authService.afAuth.currentUser; // Get the current user
+
+  //   if (user) {
+  //     const uid = user.uid; // Get the UID from the current user
+  //     const cartItem = { ...this.productDetails, quantity: this.quantity }; // Include quantity
+
+  //     try {
+  //       await this.authService.addToCart(uid, cartItem); // Call the method to add to cart
+  //       console.log('Added to cart:', cartItem);
+  //     } catch (error) {
+  //       console.error('Error adding to cart:', error);
+  //     }
+  //   } else {
+  //     console.warn('User not logged in');
+  //   }
+  //   // if (!this.userData.logIn) {
+  //   //   this.showMessage.showError('You Have To Login');
+  //   //   return;
+  //   // }
+  //   // this.userData.saveCart(this.userId, this.userCart).subscribe(
+  //   //   (response) => {
+  //   //     console.log(this.userCart);
+  //   //     this.showMessage.showSuccess('Your Item Has Been Added to cart');
+  //   //   },
+  //   //   (error) => {
+  //   //     console.error('Error saving favorites', error);
+  //   //   }
+  //   // );
+  // }
+
   buyNow() {
-    if (!this.userData.logIn) {
-      this.showMessage.showError('You Have To Login');
-      return;
-    }
-    this.userData.saveCart(this.userId, this.userCart).subscribe(
-      (response) => {
-        console.log(this.userCart);
-        this.showMessage.showSuccess('Your Item Has Been Added to cart');
-      },
-      (error) => {
-        console.error('Error saving favorites', error);
-      }
-    );
-  }
-  deleteFavorites() {
-    const userId = JSON.parse(localStorage.getItem('user')!);
-    this.favorites = this.favorites.filter(
-      (item: any) => item.id !== this.productDetails.id
-    );
-    this.userData.deleteFavorites(userId, this.favorites).subscribe();
-  }
-  addToFavorites(): void {
-    if (!this.isFavorites) {
-      this.favorites.push({ ...this.productDetails, quantity: 1 });
-      if (this.userData) {
-        this.userData.saveFavorites(this.userId, this.favorites).subscribe(
-          (response) => {
-            this.showMessage.showSuccess(
-              'Your Item Has Been Added to Favorites'
-            );
-          },
-          (error) => {
-            console.error('Error saving favorites', error);
+    // Use `first()` to take only the first emitted value and complete the subscription
+    this.cartService
+      .getCart()
+      .pipe(first())
+      .subscribe(
+        (data) => {
+          const userCart = data; // Use a local variable for cart data
+          // Find the product in the cart
+          const existingItem = userCart.find(
+            (item) => item.id === this.productDetails.id
+          );
+
+          if (existingItem) {
+            // If the item exists, increase the quantity
+            const updatedQuantity = existingItem.quantity + this.quantity; // Ensure you're adding to the existing quantity
+            const updatedItem = { ...existingItem, quantity: updatedQuantity }; // Create a new object for immutability
+            this.cartService
+              .updateCart(updatedItem)
+              .pipe(first())
+              .subscribe(
+                () => {
+                  this.showMessage.showSuccess('Quantity updated in cart');
+                },
+                (error) => {
+                  this.showMessage.showError('Error updating cart');
+                }
+              );
+          } else {
+            // If the item doesn't exist, add it to the cart
+            const cartItem = {
+              id: this.productDetails.id,
+              quantity: this.quantity,
+              ...this.productDetails,
+            };
+
+            this.cartService
+              .addToCart(cartItem)
+              .pipe(first())
+              .subscribe(
+                () => {
+                  this.showMessage.showSuccess('Product added to cart');
+                },
+                (error) => {
+                  this.showMessage.showError(
+                    'Please log in first to add to cart'
+                  );
+                }
+              );
           }
-        );
-      } else {
-        this.showMessage.showError('You Have To Login');
-      }
-    } else {
-      this.deleteFavorites();
-      this.showMessage.showInfo('Your Item Has Been Removed From Favorites');
-    }
+        },
+        (error) => {
+          this.showMessage.showError('Error in site');
+        }
+      );
   }
+
   increase(item: any) {
-    const isInCart = this.userCart?.some((p: any) => p.id == item.id);
-    const itemIndex = this.userCart?.findIndex((p: any) => p.id == item.id);
-    this.productInUserCart = this.productDetails;
-    if (!isInCart) {
-      this.productInUserCart.quantity =
-        (this.productInUserCart.quantity || 1) + 1;
-      this.userCart.push({ ...this.productInUserCart });
-    } else {
-      this.userCart[itemIndex].quantity += 1;
-      this.productInUserCart.quantity = this.userCart[itemIndex].quantity;
-    }
+    this.quantity++;
   }
 
   decrease() {
-    if (this.productInUserCart.quantity > 1) {
-      this.productInUserCart.quantity =
-        (this.productInUserCart.quantity || 1) - 1;
+    if (this.quantity > 1) {
+      this.quantity--;
     }
   }
-
-  selectSize(size: string) {
-    this.selectedSize = size;
-  }
-
-  toggleFavorite() {
-    if (!this.userData.logIn) {
-      this.showMessage.showError('You Have To Login');
+  async toggleFavorite() {
+    const user = await this.afAuth.currentUser;
+    if (!user) {
+      this.showMessage.showError('Please log in first to add to favorites.');
       return;
     }
-    this.addToFavorites();
-    this.isFavorites = !this.isFavorites;
+
+    this.currentUserId = user.uid;
+    if (this.isFavorites) {
+      this.removeFromFavorites();
+    } else {
+      this.addToFavorites();
+    }
   }
 }

@@ -2,7 +2,7 @@
   <div class="order-form">
     <!-- product -->
     <div class="parent-product">
-      <div *ngFor="let item of userData.cart" class="product">
+      <div *ngFor="let item of userCart" class="product">
         <div class="product-info">
           <img [src]="item.image" alt="LCD Monitor" />
           <span>{{ item.title }}</span>

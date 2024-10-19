@@ -5,12 +5,12 @@ import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; // Import CommonModule for ngFor and ngIf
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, NgModel } from '@angular/forms';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'src/app/service/message.service';
 import { filter } from 'rxjs';
 import { LogoComponent } from 'src/app/components/logo/logo.component';
+import { AuthService } from 'src/app/service/auth.service';
+import { AuthServiceService } from 'src/app/service/auth-service.service';
 interface Product {
   id: number;
   name: string;
@@ -45,26 +45,17 @@ export class ProductsComponent implements OnInit, DoCheck {
 
   constructor(
     private data: DataService,
-    private authService: AuthServiceService,
     private router: Router,
-    private showMessage: MessageService
+    private authService: AuthService,
+    private showMessage: MessageService,
+    private getCategory: AuthServiceService
   ) {
-    this.category = this.authService.category;
-    const user = JSON.parse(localStorage.getItem('user')!);
-    if (this.authService.logIn) {
-      this.authService.getUserData(user).subscribe((data) => {
-        this.userData = data || [];
-        if (this.userData) {
-          this.favorites = this.userData.favorites || [];
-          this.cart = this.userData.cart || [];
-        }
-      });
-    }
+    this.category = 'all';
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
         if (this.router.url !== '/products') {
-          this.authService.category = 'all';
+          this.getCategory.category = 'all';
         }
       });
   }
@@ -95,46 +86,42 @@ export class ProductsComponent implements OnInit, DoCheck {
       this.data.searchResult = '';
     }
   }
-  addToCart(item: any) {
-    const existingCart = this.cart.find((cart) => cart.id === item.id);
-    if (!existingCart) {
-      item.quantity = 1;
-      this.cart.push({ ...item });
-    } else {
-      existingCart.quantity = (existingCart.quantity || 0) + 1;
+  async addToCart(item: any) {
+    const user = await this.authService.afAuth.currentUser;
+    item.quantity = 1; // Get the current user
+    console.log(user);
+    if (
+      !item ||
+      !item.id ||
+      !item.title ||
+      item.price === undefined ||
+      item.quantity === undefined
+    ) {
+      console.error('Product data is incomplete:', item);
+      return; // Exit the function if the product is incomplete
     }
-    if (this.userData) {
-      this.authService.saveCart(this.userData!.id, this.cart).subscribe(
-        (response) => {
-          this.showMessage.showSuccess('Item Added To Cart');
-        },
-        (error) => {
-          console.error('Error saving cart', error);
-        }
-      );
+    if (user) {
+      const uid = user.uid; // Get the UID from the current user
+      try {
+        await this.authService.addToCart(uid, item); // Call the method to add to cart
+        console.log('Added to cart:', item);
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+      }
     } else {
       this.showMessage.showError('You Have To Login');
+      console.warn('User not logged in');
     }
   }
-  addToFavorites(item: any) {
-    const existingFavorite = this.favorites.find((fav) => fav.id === item.id);
-    if (!existingFavorite) {
-      item.quantity = 1;
-      this.favorites.push({ ...item });
-    } else {
-      existingFavorite.quantity = (existingFavorite.quantity || 0) + 1;
-    }
-    if (this.userData) {
-      this.authService
-        .saveFavorites(this.userData!.id, this.favorites)
-        .subscribe(
-          (response) => {
-            this.showMessage.showSuccess('Item Added To Favorites');
-          },
-          (error) => {
-            console.error('Error saving favorites', error);
-          }
-        );
+  async addToFavorites(item: any) {
+    const user = await this.authService.afAuth.currentUser; // Get the current user
+    if (user) {
+      const uid = user.uid; // Get the UID from the current user
+      try {
+        await this.authService.addToFavorites(uid, item); // Call a method to add the favorite
+      } catch (error) {
+        console.error('Error adding to favorites:', error);
+      }
     } else {
       this.showMessage.showError('You Have To login');
     }

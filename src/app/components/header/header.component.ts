@@ -1,17 +1,11 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
-import {
-  Component,
-  DoCheck,
-  ElementRef,
-  HostListener,
-  ViewChild,
-} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-
 import { DataService } from 'src/app/service/data.service';
 import { RouterModule } from '@angular/router';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MessageService } from 'src/app/service/message.service';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +14,7 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
   standalone: true,
   imports: [FormsModule, RouterLink, RouterModule, CommonModule],
 })
-export class HeaderComponent implements DoCheck {
+export class HeaderComponent {
   showInput: boolean = false;
   searchTerm: string = ''; // Holds the user's search input
   filteredProducts: any[] = []; // Holds the search results
@@ -34,15 +28,14 @@ export class HeaderComponent implements DoCheck {
   constructor(
     private dataService: DataService,
     private route: Router,
-    public userAuth: AuthServiceService
+    public afAuth: AngularFireAuth,
+    private showMessage: MessageService
   ) {
-    this.logIn = this.userAuth.logIn;
+    this.afAuth.authState.subscribe((user) => {
+      this.logIn = !!user; // If user is not null, set isLoggedIn to true
+    });
   }
-  ngDoCheck(): void {
-    if (this.userAuth.logIn != this.logIn) {
-      this.logIn = this.userAuth.logIn;
-    }
-  }
+
   // Toggles the input field visibility and focuses the input when shown
   toggleSearch() {
     this.showInput = !this.showInput;
@@ -88,10 +81,13 @@ export class HeaderComponent implements DoCheck {
       this.isDropdownVisible = false; // Close the menu when switching to desktop
     }
   }
-  logOut() {
-    this.userAuth.logout();
-    this.logIn = this.userAuth.logIn;
-
-    this.route.navigate(['/login']);
+  async logOut() {
+    try {
+      await this.afAuth.signOut();
+      this.route.navigate(['/login']);
+      this.showMessage.showInfo('User Logged Out');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   }
 }
