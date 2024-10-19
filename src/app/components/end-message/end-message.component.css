@@ -32,6 +32,9 @@ input {
   gap: 20px;
 }
 .box {
+  display: flex;
+    flex-direction: column;
+    gap: 2rem;
   width: 48%;
 }
 .conatiner-1 {
@@ -57,6 +60,20 @@ input {
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 }
+
+.box-2{
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 13px;
+  font-weight: 500;
+  font-size: 21px;
+}
+
+.total{
+  color: #f1adbf;
+
+}
+
 .content-3 {
   background-color: rgba(255, 255, 255, 0.473);
   display: flex;

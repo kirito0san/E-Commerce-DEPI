@@ -37,3 +37,8 @@ button span.carousel-control-prev-icon {
   -o-border-radius: 50%;
   background-size: 25px 16px;
 }
+
+.carousel-control-next,
+.carousel-control-prev{
+width: 0;
+}

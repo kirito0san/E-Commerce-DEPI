@@ -250,8 +250,9 @@ nav li {
   border-bottom-left-radius: 8px !important;
 }
 .delete:hover {
-  background-color: #a8adb0 !important;
-  box-shadow: -2px 4px 8px 1px rgba(0, 0, 0, 0.542);
+  /* background-color: #a8adb0 !important; */
+  background-color: #cee2ee !important;
+  box-shadow: -1px 4px 8px 1px rgba(0, 0, 0, 0.542);
 }
 .delete svg {
   transition: 0.3s;

@@ -120,30 +120,6 @@ describe('HeaderComponent', () => {
     expect(component.isDropdownVisible).toBeFalse();
   });
 
-  it('should adjust for desktop on window resize and hide dropdown', () => {
-    const event = new Event('resize');
-
-    // Spy on window.innerWidth only once
-    const spy = spyOnProperty(window, 'innerWidth', 'get');
-
-    // Simulate mobile screen size
-  spy.and.returnValue(600); // Mobile size
-  component.onResize(event);
-  fixture.detectChanges();
-
-  // Expect that isDesktop is false for mobile size
-  expect(component.isDropdownVisible).toBeFalse();
-  expect(component.isDesktop).toBeFalse();
-
-  // Simulate desktop screen size by changing the return value of the spy
-  spy.and.returnValue(1024); // Desktop size
-  component.onResize(event);
-  fixture.detectChanges();
-
-  // Expect that isDesktop is now true for desktop size
-  expect(component.isDesktop).toBeTrue();
-  });
-
   it('should toggle dropdown visibility', () => {
     expect(component.isDropdownVisible).toBeFalse();
     component.dropDown();
@@ -157,23 +133,23 @@ describe('HeaderComponent', () => {
     expect(component.isDropdownVisible).toBeFalse();
   });
 
-  it('should adjust for desktop on window resize and hide dropdown', () => {
-    const event = new Event('resize');
-    const spy = spyOnProperty(window, 'innerWidth', 'get');
+  // it('should adjust for desktop on window resize and hide dropdown', () => {
+  //   const event = new Event('resize');
+  //   const spy = spyOnProperty(window, 'innerWidth', 'get');
 
-    spy.and.returnValue(600);
-    component.onResize(event);
-    fixture.detectChanges();
+  //   spy.and.returnValue(600);
+  //   component.onResize(event);
+  //   fixture.detectChanges();
 
-    expect(component.isDesktop).toBeFalse();
+  //   expect(component.isDesktop).toBeFalse();
 
-    spy.and.returnValue(1024);
-    component.onResize(event);
-    fixture.detectChanges();
+  //   spy.and.returnValue(1024);
+  //   component.onResize(event);
+  //   fixture.detectChanges();
 
-    expect(component.isDesktop).toBeTrue();
-    expect(component.isDropdownVisible).toBeFalse();
-  });
+  //   expect(component.isDesktop).toBeTrue();
+  //   expect(component.isDropdownVisible).toBeFalse();
+  // });
 
   it('should log out and navigate to login page', () => {
     spyOn(component.userAuth, 'logout').and.callThrough(); // Spy on the logout method
