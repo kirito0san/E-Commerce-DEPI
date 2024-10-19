@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart-service.service';
 import { DataService } from 'src/app/service/data.service';
 import { MessageService } from 'src/app/service/message.service';
 import { first } from 'rxjs/operators';
-import { FirebaseAppModule } from '@angular/fire/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore'; // Import Firestore
 import firebase from 'firebase/compat/app'; // Import firebase for compatibility
@@ -135,39 +132,6 @@ export class ProductComponent {
   getEmptyStars(rate: number) {
     return 5 - Math.ceil(rate); // For empty stars
   }
-
-  // Start Counter
-  // async buyNow() {
-  //   const user = await this.authService.afAuth.currentUser; // Get the current user
-
-  //   if (user) {
-  //     const uid = user.uid; // Get the UID from the current user
-  //     const cartItem = { ...this.productDetails, quantity: this.quantity }; // Include quantity
-
-  //     try {
-  //       await this.authService.addToCart(uid, cartItem); // Call the method to add to cart
-  //       console.log('Added to cart:', cartItem);
-  //     } catch (error) {
-  //       console.error('Error adding to cart:', error);
-  //     }
-  //   } else {
-  //     console.warn('User not logged in');
-  //   }
-  //   // if (!this.userData.logIn) {
-  //   //   this.showMessage.showError('You Have To Login');
-  //   //   return;
-  //   // }
-  //   // this.userData.saveCart(this.userId, this.userCart).subscribe(
-  //   //   (response) => {
-  //   //     console.log(this.userCart);
-  //   //     this.showMessage.showSuccess('Your Item Has Been Added to cart');
-  //   //   },
-  //   //   (error) => {
-  //   //     console.error('Error saving favorites', error);
-  //   //   }
-  //   // );
-  // }
-
   buyNow() {
     // Use `first()` to take only the first emitted value and complete the subscription
     this.cartService
